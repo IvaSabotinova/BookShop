@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MessageAllViewModel>
+
+<br>
+<h2>Received Messages</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>FullName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Subject</th>
+            <th>Created On</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int countNo = 0;
+        }
+        @foreach(MessageAllViewModel message in Model)
+        {
+            <tr>
+                <td>@(++countNo)</td>
+                <td>@message.FullName</td>
+                <td>@message.Email</td>
+                <td>@message.Phone</td>
+                <td>@message.Subject</td>
+                <td>@message.CreatedOn</td>             
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm" href="/Admin/Messages/Details?id=@message.Id">Details</a> 
+                    <a class="btn btn-danger btn-sm" href="/Admin/Messages/Delete?id=@message.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@if (Model.totalPages < 10) {
+<nav>
+  <ul class="pagination">
+    @for(int i = 1; i <= Model.totalPages; i++) {
+        <li class="page-item"><a class="page-link" href="?page=@i">@i</a></li>
+    }
+  </ul>
+</nav>
+}
+else {
+    <form>
+        <label>Page</label>
+        <select name="page" onchange="this.form.submit()">
+            @for(int i = 1; i <= Model.totalPages; i++) {
+                @if (i == Model.page) {
+                    <option value='@i' selected>@i</option>
+                }
+                else {
+                    <option value='@i'>@i</option>
+                }
+            }
+        </select>
+    </form>
+}*@

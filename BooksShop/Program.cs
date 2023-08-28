@@ -29,6 +29,9 @@ namespace BooksShop
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IContactService, ContactService>();
 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // builder.Services.AddAutoMapper(typeof(IContactService).Assembly, typeof(ContactController).Assembly);
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -52,9 +55,17 @@ namespace BooksShop
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                 name: "areas",
+                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
             app.MapRazorPages();
 
             app.Run();

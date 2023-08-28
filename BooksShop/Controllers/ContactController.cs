@@ -1,7 +1,7 @@
 ﻿namespace BooksShop.Controllers
 {
     using BooksShop.Core.Services;
-    using BooksShop.Core.ViewModels;
+    using BooksShop.Core.ViewModels.Messages;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc;
     using static BooksShop.Infrastructure.Data.Constants;
@@ -35,7 +35,7 @@
             {
                 await this.contactService.CreateAsync(model);
                 this.TempData[Constants.Message] = SuccessMessage;
-                return this.RedirectToAction("Index", "Home", new { area = string.Empty });
+                return this.RedirectToAction(nameof(this.Add));
             }
             catch (Exception ex)
             {
@@ -45,6 +45,5 @@
                 return this.View(model);
             }
         }
-
     }
 }

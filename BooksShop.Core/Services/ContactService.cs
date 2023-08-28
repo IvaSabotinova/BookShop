@@ -1,33 +1,38 @@
 ﻿namespace BooksShop.Core.Services
 {
-    using BooksShop.Core.ViewModels;
+    using System.Collections.Generic;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using BooksShop.Core.ViewModels.Messages;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
+    using Microsoft.EntityFrameworkCore;
 
     public class ContactService : IContactService
     {
         private readonly IRepository<Message> messageRepo;
+        private readonly IMapper mapper;
 
-        public ContactService(IRepository<Message> messageRepo)
+        public ContactService(
+            IRepository<Message> messageRepo,
+            IMapper mapper)
         {
             this.messageRepo = messageRepo;
+            this.mapper = mapper;
         }
 
         public async Task CreateAsync(MessageInputModel model)
         {
-            Message newMessage = new Message()
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                Phone = model.Phone,
-                Subject = model.Subject,
-                Content = model.Content,
-                CreatedOn = model.CreatedOn,
-            };
+            Message newMessage = this.mapper.Map<Message>(model);
 
             await this.messageRepo.AddAsync(newMessage);
             await this.messageRepo.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<MessageAllViewModel>> GetAll() =>
+            await this.messageRepo.AllAsNoTracking()
+            .OrderByDescending(x => x.CreatedOn)
+            .ProjectTo<MessageAllViewModel>(this.mapper.ConfigurationProvider)
+            .ToListAsync();
     }
 }
