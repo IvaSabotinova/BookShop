@@ -1,0 +1,15 @@
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\bin\Debug\net6.0\BooksShop.Core.deps.json
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\bin\Debug\net6.0\BooksShop.Core.dll
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\bin\Debug\net6.0\BooksShop.Core.pdb
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\bin\Debug\net6.0\BooksShop.Infrastructure.dll
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\bin\Debug\net6.0\BooksShop.Infrastructure.pdb
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.csproj.AssemblyReference.cache
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.AssemblyInfoInputs.cache
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.AssemblyInfo.cs
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.csproj.CopyComplete
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.dll
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\refint\BooksShop.Core.dll
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\BooksShop.Core.pdb
+C:\Users\Asus\source\repos\Web\Books_Shopping-Cart\BooksShop\BooksShop.Core\obj\Debug\net6.0\ref\BooksShop.Core.dll

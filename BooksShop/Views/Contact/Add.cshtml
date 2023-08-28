@@ -1,0 +1,91 @@
+﻿@model MessageInputModel
+
+
+<div class="row">
+    <div class="col-lg-9 mx-auto p-3">
+        <h3 class="mb-3 font-weight-normal text-center pb-4">Contact Form</h3>
+
+
+        @if (this.TempData.ContainsKey(Message))
+        {
+            @* <div class="alert alert-danger">@this.TempData[Message]</div>*@
+
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>@this.TempData[Message]</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        @*   @if (Model.ErrorMessage.Length > 0)
+        {
+        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@Model.ErrorMessage</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+        }
+        else if (Model.SuccessMessage.Length > 0)
+        {
+        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>@Model.SuccessMessage</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+        }*@
+
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="FirstName"></label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="FirstName">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="LastName"></label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="LastName">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="Email"></label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="Phone"></label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Phone">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="Subject"></label>
+                <div class="col-sm-8">
+                    <select class="form-select" asp-for="Subject" asp-items="Model.SubjectList">
+                    </select>
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="Content"></label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" asp-for="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="offset-sm-4" col-sm-8">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
