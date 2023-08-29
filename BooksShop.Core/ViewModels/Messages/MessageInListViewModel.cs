@@ -1,6 +1,6 @@
 ﻿namespace BooksShop.Core.ViewModels.Messages
 {
-    public class MessageAllViewModel
+    public class MessageInListViewModel
     {
         public int Id { get; set; }
 

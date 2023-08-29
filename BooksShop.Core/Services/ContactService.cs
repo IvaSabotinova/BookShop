@@ -29,10 +29,27 @@
             await this.messageRepo.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<MessageAllViewModel>> GetAll() =>
-            await this.messageRepo.AllAsNoTracking()
-            .OrderByDescending(x => x.CreatedOn)
-            .ProjectTo<MessageAllViewModel>(this.mapper.ConfigurationProvider)
-            .ToListAsync();
+        public async Task<MessagesListViewModel> GetAll(int page, int itemsPerPage)
+        {
+            List<MessageInListViewModel> messages = await this.messageRepo.AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .ProjectTo<MessageInListViewModel>(this.mapper.ConfigurationProvider)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
+
+            return new MessagesListViewModel()
+            {
+                ItemsPerPage = itemsPerPage,
+                AllItemsCount = await this.GetMessagesCount(),
+                CurrentPageNumber = page,
+                Messages = messages,
+            };
+        }
+
+        public async Task<int> GetMessagesCount()
+        {
+            return await this.messageRepo.AllAsNoTracking().CountAsync();
+        }
     }
 }

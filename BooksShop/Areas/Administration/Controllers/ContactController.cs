@@ -13,9 +13,14 @@
             this.contactService = contactService;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int id = 1, int itemsPerPage = 10)
         {
-            IEnumerable<MessageAllViewModel> model = await this.contactService.GetAll();
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            MessagesListViewModel model = await this.contactService.GetAll(id, itemsPerPage);
             return this.View(model);
         }
     }

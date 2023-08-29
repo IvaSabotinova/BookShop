@@ -6,6 +6,8 @@
     {
         Task CreateAsync(MessageInputModel model);
 
-        Task<IEnumerable<MessageAllViewModel>> GetAll();
+        Task<MessagesListViewModel> GetAll(int page, int itemsPerPage = 10);
+
+        Task<int> GetMessagesCount();
     }
 }

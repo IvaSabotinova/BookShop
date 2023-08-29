@@ -9,7 +9,7 @@
         public BooksShopProfile()
         {
             this.CreateMap<MessageInputModel, Message>();
-            this.CreateMap<Message, MessageAllViewModel>()
+            this.CreateMap<Message, MessageInListViewModel>()
                 .ForMember(x => x.FullName, mo => mo
                 .MapFrom(s => s.FirstName + " " + s.LastName));
         }

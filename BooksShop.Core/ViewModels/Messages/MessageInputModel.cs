@@ -41,7 +41,5 @@
             new SelectListItem { Value = "Job Application", Text = "Job Application" },
             new SelectListItem { Value = "Other", Text = "Other" },
         };
-
-        //public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     }
 }
