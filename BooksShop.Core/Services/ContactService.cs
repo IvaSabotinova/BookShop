@@ -29,6 +29,11 @@
             await this.messageRepo.SaveChangesAsync();
         }
 
+        public async Task<int> GetMessagesCount()
+        {
+            return await this.messageRepo.AllAsNoTracking().CountAsync();
+        }
+
         public async Task<MessagesListViewModel> GetAll(int page, int itemsPerPage)
         {
             List<MessageInListViewModel> messages = await this.messageRepo.AllAsNoTracking()
@@ -47,9 +52,29 @@
             };
         }
 
-        public async Task<int> GetMessagesCount()
+        public async Task<Message> GetById(int id)
+            => await this.messageRepo.All()
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<MessageDetailsViewModel> DetailsById(int id)
+        => await this.messageRepo.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .ProjectTo<MessageDetailsViewModel>(this.mapper.ConfigurationProvider)
+                .FirstAsync();
+
+        public async Task<int> GetIndex(int id)
         {
-            return await this.messageRepo.AllAsNoTracking().CountAsync();
+            List<int> ids = await this.messageRepo.AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => x.Id)
+                .ToListAsync();
+            return ids.FindIndex(x => x == id);
+        }
+
+        public async Task DeleteAsync(Message message)
+        {
+            this.messageRepo.Delete(message);
+            await this.messageRepo.SaveChangesAsync();
         }
     }
 }

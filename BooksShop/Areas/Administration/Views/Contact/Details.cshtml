@@ -1,0 +1,56 @@
+﻿@model MessageDetailsViewModel
+
+<h2 class="my-3">Message Details</h2>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">ID</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Id">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Full Name</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.FullName">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Email</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Email">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Phone</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Phone">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Subject</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Subject">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Message</label>
+	<div class="col-sm-7">
+		<textarea readonly class="form-control">@Model.Content</textarea>
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Created On/At</label>
+	<div class="col-sm-7">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.CreatedOn">
+	</div>
+</div>
+
+<div class="offset-sm-3 col-sm-7">
+	<a class="btn btn-primary" asp-area="Administration" asp-controller="Contact" asp-action="All" asp-route-id="@Model.CurrentPageNumber" role="button">OK</a>
+</div>

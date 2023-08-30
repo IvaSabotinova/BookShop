@@ -12,6 +12,9 @@
             this.CreateMap<Message, MessageInListViewModel>()
                 .ForMember(x => x.FullName, mo => mo
                 .MapFrom(s => s.FirstName + " " + s.LastName));
+            this.CreateMap<Message, MessageDetailsViewModel>()
+                .ForMember(x => x.FullName, mo => mo
+                .MapFrom(s => s.FirstName + " " + s.LastName));
         }
     }
 }

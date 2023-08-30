@@ -3,6 +3,11 @@
 <br>
 <h2>Received Messages</h2>
 
+@if (!Model.Messages.Any())
+{
+    <h3 class="text-center mt-7 mb-7">No messages!</h3>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +20,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>        
         @foreach(MessageInListViewModel message in Model.Messages)
         {
             <tr>
@@ -26,8 +31,8 @@
                 <td>@message.Subject</td>
                 <td>@message.CreatedOn</td>             
                 <td style="white-space:nowrap">
-                    <a class="btn btn-primary btn-sm" href="/Admin/Messages/Details?id=@message.Id">Details</a> 
-                    <a class="btn btn-danger btn-sm" href="/Admin/Messages/Delete?id=@message.Id">Delete</a>
+                    <a class="btn btn-primary btn-sm" asp-area="Administration" asp-controller="Contact" asp-action="Details" asp-route-id="@message.Id" asp-route-page="@Model.CurrentPageNumber">Details</a>
+                    <a class="btn btn-danger btn-sm" asp-area="Administration" asp-controller="Contact" asp-action="Delete" asp-route-id="@message.Id" asp-route-page="@Model.CurrentPageNumber" onclick="return confirm('Are you sure you want to delete that image?')">Delete</a>
                 </td>
             </tr>
         }
@@ -35,5 +40,8 @@
 </table>
 
 <partial name="_PagingPartial" model="@Model" />
+
+<!--Delete Modal-->
+
 
 
