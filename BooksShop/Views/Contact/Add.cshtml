@@ -8,28 +8,11 @@
 
         @if (this.TempData.ContainsKey(Message))
         {
-            @* <div class="alert alert-danger">@this.TempData[Message]</div>*@
-
             <div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <strong>@this.TempData[Message]</strong>
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         }
-
-        @*   @if (Model.ErrorMessage.Length > 0)
-        {
-        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-        <strong>@Model.ErrorMessage</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>
-        }
-        else if (Model.SuccessMessage.Length > 0)
-        {
-        <div class='alert alert-success alert-dismissible fade show' role='alert'>
-        <strong>@Model.SuccessMessage</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>
-        }*@
 
         <form method="post">
             <div class="row mb-3">

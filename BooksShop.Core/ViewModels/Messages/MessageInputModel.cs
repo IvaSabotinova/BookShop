@@ -6,15 +6,15 @@
 
     public class MessageInputModel
     {
-        [Required(ErrorMessage = ErrorMessageFirstName)]
+        [Required(ErrorMessage = FirstNameErrorMessage)]
         [Display(Name = DisplayFirstName)]
         public string FirstName { get; set; } = null!;
 
-        [Required(ErrorMessage = ErrorMessageLastName)]
+        [Required(ErrorMessage = LastNameErrorMessage)]
         [Display(Name = DisplayLastName)]
         public string LastName { get; set; } = null!;
 
-        [Required(ErrorMessage = ErrorMessageEmail)]
+        [Required(ErrorMessage = EmailErrorMessage)]
         [EmailAddress]
         [Display(Name = DisplayEmail)]
         public string Email { get; set; } = null!;
@@ -22,14 +22,14 @@
         [Phone]
         public string? Phone { get; set; }
 
-        [Required(ErrorMessage = ErrorMessageSubject)]
+        [Required(ErrorMessage = SubjectErrorMessage)]
         [Display(Name = DisplaySubject)]
 
         public string Subject { get; set; }
 
-        [Required(ErrorMessage = ErrorMessageContent)]
-        [MinLength(5, ErrorMessage = MaxLengthErrorMessageContent)]
-        [MaxLength(1024, ErrorMessage = MinLengthErrorMessageContent)]
+        [Required(ErrorMessage = ContentErrorMessage)]
+        [MinLength(5, ErrorMessage = MinLengthContentErrorMessageContent)]
+        [MaxLength(1024, ErrorMessage = MaxLengthContentErrorMessage)]
         [Display(Name = DisplayContent)]
 
         public string Content { get; set; } = null!;

@@ -51,8 +51,9 @@
                 return this.NotFound();
             }
 
+            int lastMessageIndex = await this.contactService.GetMessagesCount() - 1;
             int messagesIndex = await this.contactService.GetIndex(id);
-            page = (messagesIndex > 9 && messagesIndex % 10 == 0) ? page - 1 : page;
+            page = (messagesIndex > 9 && messagesIndex % 10 == 0 && messagesIndex == lastMessageIndex) ? page - 1 : page;
 
             await this.contactService.DeleteAsync(message);
 
