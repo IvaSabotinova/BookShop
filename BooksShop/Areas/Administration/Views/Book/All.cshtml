@@ -1,0 +1,81 @@
+﻿@model BooksListViewModel
+
+<h2 class="my-3">List of Books</h2>
+
+@if (!Model.Books.Any())
+{
+    <h3 class="text-center mt-7 mb-7">No books!</h3>
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>
+    </div>
+   @* <div class="col">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" name="search" value="@Model.search" placeholder="Search by Title or Author">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>*@
+</div>
+@*
+<script>
+    function sortTable(column) {
+        let order = "desc";
+        let currentColumn = "@Model.column";
+        let currentOrder = "@Model.order";
+
+        if (column == currentColumn) {
+            if (currentOrder == "asc") order = "desc";
+            else order = "asc";
+        }
+
+        window.location.href = '?search=@Model.search&column=' + column + '&order=' + order;
+    }
+</script>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Created On/At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BookInListViewModel book in Model.Books)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.NumOfPages</td>
+                <td>@(book.Price)$</td>
+                <td>@book.CategoryName</td>
+                <td><img src="@book.ImageUrl" width="100"></td>
+                <td>@book.CreatedOn</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" onclick="return confirm('Are you sure you want to delete that book?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_PagingPartial" model="@Model" />
+
+@*<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.totalPages; i++)
+        {
+            <li class="page-item"><a class="page-link" href="?page=@(i)&search=@(Model.search)&column=@Model.column&order=@Model.order">@i</a></li>
+        }
+    </ul>
+</nav>*@

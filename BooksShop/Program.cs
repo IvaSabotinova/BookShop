@@ -28,6 +28,7 @@ namespace BooksShop
 
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IContactService, ContactService>();
+            builder.Services.AddScoped<IBookService, BookService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
