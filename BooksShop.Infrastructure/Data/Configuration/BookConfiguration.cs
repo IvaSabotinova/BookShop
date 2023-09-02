@@ -23,8 +23,9 @@
                     NumOfPages = 969,
                     Price = 25.8m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/90e0e436-1c66-41ad-88e6-e1a153404144.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -35,8 +36,9 @@
                     NumOfPages = 1013,
                     Price = 96.4m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/73174e87-d6b4-4604-9712-7330ab87ed72.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -47,8 +49,9 @@
                     NumOfPages = 502,
                     Price = 38.2m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/b8422c70-aebe-4333-8908-0a59b53e9ab3.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -59,8 +62,9 @@
                     NumOfPages = 658,
                     Price = 99.9m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/0355b9fb-bf1b-4ae5-a3b9-a88ea551f1b5.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -71,8 +75,9 @@
                     NumOfPages = 313,
                     Price = 75.0m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/e538ff43-dded-46c1-b7e9-f33cd2096314.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -83,8 +88,9 @@
                     NumOfPages = 445,
                     Price = 45.5m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/e5089e94-d32f-43f0-9c85-25b5ecdfcd2e.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -95,8 +101,9 @@
                     NumOfPages = 581,
                     Price = 105.5m,
                     CategoryId = 3,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/04fe7e81-299e-4b26-b1fd-0e1a3149c9da.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -107,8 +114,9 @@
                     NumOfPages = 1130,
                     Price = 80.0m,
                     CategoryId = 3,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/005f0140-65ad-4b24-8f05-b2d45f274f49.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -119,8 +127,9 @@
                     NumOfPages = 250,
                     Price = 75.5m,
                     CategoryId = 3,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/8b457390-2df6-4f02-9a0b-6b3fe4890d85.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -131,8 +140,9 @@
                     NumOfPages = 304,
                     Price = 99.0m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/aa23bf8b-685c-430d-a256-7b684dd1cb90.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -143,8 +153,9 @@
                     NumOfPages = 358,
                     Price = 85.0m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/27486390-9981-468b-93ad-c4cb1c8087ab.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -155,8 +166,9 @@
                     NumOfPages = 327,
                     Price = 60.0m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/3faa928e-f41d-4710-a469-b8b357eef1ba.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -167,8 +179,9 @@
                     NumOfPages = 927,
                     Price = 98.5m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/fcc69c01-79fd-45b8-82cc-d7011b5493bc.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -179,8 +192,9 @@
                     NumOfPages = 620,
                     Price = 68.5m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/b449a8b1-84f1-44dd-8c6d-e965b6efa90b.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -191,8 +205,9 @@
                     NumOfPages = 365,
                     Price = 65.0m,
                     CategoryId = 1,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/3f3d222a-2401-437c-81b0-7db157cef7af.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -203,8 +218,9 @@
                     NumOfPages = 632,
                     Price = 62.0m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/3f569900-cc2e-4f9d-ac96-54cddcd7e4e6.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -215,8 +231,9 @@
                     NumOfPages = 677,
                     Price = 78.0m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/22ec6be5-99cc-4e1b-91b8-0459f964cfdf.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -227,8 +244,9 @@
                     NumOfPages = 299,
                     Price = 69.0m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/27cd64b2-01d7-4d33-bf31-ba2d9f5ef27a.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -239,8 +257,9 @@
                     NumOfPages = 160,
                     Price = 69.9m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/e194f5d1-1914-4ab7-ba69-f2c24cd46e03.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -251,8 +270,9 @@
                     NumOfPages = 188,
                     Price = 35.0m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/6dff32cc-dcbc-425a-8406-6463b36678df.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -263,8 +283,9 @@
                     NumOfPages = 389,
                     Price = 40.0m,
                     CategoryId = 4,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/3cc142ee-2ac0-4cee-8a63-d88d271d0c86.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -275,8 +296,9 @@
                     NumOfPages = 167,
                     Price = 52.9m,
                     CategoryId = 5,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/3c0e44e3-4cb5-4c12-845e-5179e4b82717.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -287,8 +309,9 @@
                     NumOfPages = 311,
                     Price = 30.0m,
                     CategoryId = 5,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/86960c70-fd36-4ed1-94f9-3ecb8c47aa5a.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -299,8 +322,9 @@
                     NumOfPages = 262,
                     Price = 32.5m,
                     CategoryId = 5,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/b977e8e1-30eb-44a8-b70b-88a87fb7bbe5.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -311,8 +335,9 @@
                     NumOfPages = 822,
                     Price = 79.9m,
                     CategoryId = 3,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/d31de0aa-e93a-4122-ae68-a894811f66d1.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -323,8 +348,9 @@
                     NumOfPages = 465,
                     Price = 59.9m,
                     CategoryId = 3,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/875ef8c0-31d5-476f-bd2c-0b1bd35aea0f.jpg",
+                    CreatedOn = DateTime.Now,
                 },
                 new Book
                 {
@@ -335,8 +361,9 @@
                     NumOfPages = 264,
                     Price = 35.5m,
                     CategoryId = 2,
-                    Description = "ToDo",
+                    Description = null,
                     ImageUrl = "/images/books/b907a2b2-c4f3-4233-aef4-a0c46098a6df.jpg",
+                    CreatedOn = DateTime.Now,
                 },
             };
 

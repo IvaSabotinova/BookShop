@@ -41,6 +41,11 @@
                     Id = 5,
                     Name = "History",
                 },
+                new Category()
+                {
+                    Id = 6,
+                    Name = "Other",
+                },
             };
 
             return categories;

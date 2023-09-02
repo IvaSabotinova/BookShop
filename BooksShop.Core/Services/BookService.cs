@@ -1,25 +1,49 @@
-﻿
-namespace BooksShop.Core.Services
+﻿namespace BooksShop.Core.Services
 {
+    using System;
+    using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
-    using System;
 
     public class BookService : IBookService
     {
         private readonly IRepository<Book> booksRepo;
+        private readonly IRepository<Category> categoryRepo;
         private readonly IMapper mapper;
 
         public BookService(
             IRepository<Book> booksRepo,
+            IRepository<Category> categoryRepo,
             IMapper mapper)
         {
             this.booksRepo = booksRepo;
+            this.categoryRepo = categoryRepo;
             this.mapper = mapper;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllCategories()
+        {
+            return await this.categoryRepo.AllAsNoTracking()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                })
+                .ToListAsync();
+        }
+
+        public async Task CreateBook(BookInputModel model)
+        {
+            Book newBook = this.mapper.Map<Book>(model);
+
+            // TODO - Save image
+            await this.booksRepo.AddAsync(newBook);
+            await this.booksRepo.SaveChangesAsync();
         }
 
         public async Task<int> GetBooksCount(string? search = null)

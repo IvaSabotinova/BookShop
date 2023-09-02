@@ -20,6 +20,8 @@
 
             // Books
             this.CreateMap<Book, BookInListViewModel>();
+            this.CreateMap<BookInputModel, Book>()
+                .ForMember(x => x.ImageUrl, opt => opt.Ignore());
         }
     }
 }

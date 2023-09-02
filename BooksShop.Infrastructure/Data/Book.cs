@@ -2,7 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Microsoft.AspNetCore.Http;
 
     using static BooksShop.Infrastructure.Data.Constants;
 
@@ -30,10 +29,10 @@
         public Category Category { get; set; }
 
         [MaxLength(DescriptionMaxLength)]
-        public string Description { get; set; }
+        public string? Description { get; set; } = null;
 
         public string ImageUrl { get; set; }
 
-        public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public DateTime CreatedOn { get; set; }
     }
 }

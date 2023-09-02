@@ -80,12 +80,8 @@
 
         public const int CategoryNameMaxLength = 100;
 
+        public const string BookCreated = "Book created successfully"!;
 
-
-
-
-
-
-
+        public const string BookCreationFailed = "Something went wrong! Book could not be created! Please try again!";
     }
 }
