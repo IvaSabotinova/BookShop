@@ -6,6 +6,11 @@
     {
         Task<int> GetBooksCount(string? search);
 
-        Task<BooksListViewModel> GetAll(int page, int itemsPerPage = 3, string? search = null);
+        Task<BooksListViewModel> GetAll(
+            int page,
+            int itemsPerPage = 3,
+            string? search = null,
+            string? column = null,
+            string? order = null);
     }
 }

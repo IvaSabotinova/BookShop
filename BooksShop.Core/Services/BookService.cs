@@ -1,4 +1,5 @@
-﻿namespace BooksShop.Core.Services
+﻿
+namespace BooksShop.Core.Services
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
@@ -6,6 +7,7 @@
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
     using Microsoft.EntityFrameworkCore;
+    using System;
 
     public class BookService : IBookService
     {
@@ -34,9 +36,17 @@
             return await booksQuery.CountAsync();
         }
 
-        public async Task<BooksListViewModel> GetAll(int page, int itemsPerPage, string? search)
+        public async Task<BooksListViewModel> GetAll(
+            int page,
+            int itemsPerPage,
+            string? search,
+            string? column,
+            string? order)
         {
-            IQueryable<Book> booksQuery = this.booksRepo.AllAsNoTracking().AsQueryable();
+            IQueryable<Book> booksQuery = this.booksRepo.AllAsNoTracking()
+                .Include(x => x.Category)
+                .OrderByDescending(x => x.Id)
+                .AsQueryable();
 
             if (string.IsNullOrEmpty(search) == false)
             {
@@ -45,8 +55,39 @@
                 || EF.Functions.Like(x.Author.ToLower(), searchQuery));
             }
 
+            string[] validColumns = { "id", "title", "author", "num_of_pages", "price", "category", "created_on" };
+
+            if (column != null && validColumns.Contains(column))
+            {
+                if (order == "asc")
+                {
+                    booksQuery = column switch
+                    {
+                        "id" => booksQuery.OrderBy(x => x.Id),
+                        "title" => booksQuery.OrderBy(x => x.Title),
+                        "author" => booksQuery.OrderBy(x => x.Author),
+                        "num_of_pages" => booksQuery.OrderBy(x => x.NumOfPages),
+                        "price" => booksQuery.OrderBy(x => x.Price),
+                        "category" => booksQuery.OrderBy(x => x.Category.Name),
+                        _ => booksQuery.OrderBy(x => x.CreatedOn),
+                    };
+                }
+                else
+                {
+                    booksQuery = column switch
+                    {
+                        "id" => booksQuery.OrderByDescending(x => x.Id),
+                        "title" => booksQuery.OrderByDescending(x => x.Title),
+                        "author" => booksQuery.OrderByDescending(x => x.Author),
+                        "num_of_pages" => booksQuery.OrderByDescending(x => x.NumOfPages),
+                        "price" => booksQuery.OrderByDescending(x => x.Price),
+                        "category" => booksQuery.OrderByDescending(x => x.Category.Name),
+                        _ => booksQuery.OrderByDescending(x => x.CreatedOn),
+                    };
+                }
+            }
+
             List<BookInListViewModel> books = await booksQuery
-                .OrderByDescending(x => x.Id)
                 .ProjectTo<BookInListViewModel>(this.mapper.ConfigurationProvider)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -59,6 +100,8 @@
                 AllItemsCount = await this.GetBooksCount(search),
                 Books = books,
                 Search = search,
+                Column = column,
+                Order = order,
             };
         }
     }

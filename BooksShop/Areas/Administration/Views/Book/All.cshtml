@@ -19,20 +19,20 @@
     </div>
 </div>
 
-@*<script>
+<script>
     function sortTable(column) {
         let order = "desc";
-        let currentColumn = "@Model.column";
-        let currentOrder = "@Model.order";
+        let currentColumn = "@Model.Column";
+        let currentOrder = "@Model.Order";
 
         if (column == currentColumn) {
             if (currentOrder == "asc") order = "desc";
             else order = "asc";
         }
 
-        window.location.href = '?search=@Model.search&column=' + column + '&order=' + order;
+        window.location.href = '?search=@Model.Search&column=' + column + '&order=' + order;
     }
-</script>*@
+</script>
 
 <table class="table">
     <thead>
@@ -74,13 +74,13 @@
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
-            <a class="page-link" asp-action="All" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search">Previous</a>
+            <a class="page-link" asp-action="All" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">Previous</a>
         </li>
         @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
         {
             if (i > 0)
             {
-                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">@i</a></li>
             }
         }
         <li class="page-item active" aria-current="page">
@@ -92,11 +92,11 @@
         {
             if (i <= Model.PagesCount)
             {
-                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">@i</a></li>
             }
         }
         <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
-            <a class="page-link" asp-action="All" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search">Next</a>
+            <a class="page-link" asp-action="All" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">Next</a>
         </li>
     </ul>
 </nav>
