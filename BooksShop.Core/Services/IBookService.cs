@@ -4,8 +4,8 @@
 
     public interface IBookService
     {
-        Task<int> GetBooksCount();
+        Task<int> GetBooksCount(string? search);
 
-        Task<BooksListViewModel> GetAll(int page, int itemsPerPage = 2);
+        Task<BooksListViewModel> GetAll(int page, int itemsPerPage = 3, string? search = null);
     }
 }

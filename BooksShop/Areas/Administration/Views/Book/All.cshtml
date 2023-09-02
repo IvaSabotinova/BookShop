@@ -4,22 +4,22 @@
 
 @if (!Model.Books.Any())
 {
-    <h3 class="text-center mt-7 mb-7">No books!</h3>
+    <h3 class="text-center mt-7 mb-7">No Books Found!</h3>
 }
 
 <div class="row mb-3">
     <div class="col">
         <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>
     </div>
-   @* <div class="col">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" name="search" value="@Model.search" placeholder="Search by Title or Author">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+    <div class="col">
+        <form method="get" class="d-flex">
+            <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by Title or Author">
+            <button class="btn btn-outline-success" type="submit">Search</button>           
         </form>
-    </div>*@
+    </div>
 </div>
-@*
-<script>
+
+@*<script>
     function sortTable(column) {
         let order = "desc";
         let currentColumn = "@Model.column";
@@ -37,14 +37,14 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Price</th>
-            <th>Category</th>
+            <th style="cursor: pointer;" onclick="sortTable('id')">ID</th>
+            <th style="cursor: pointer" onclick="sortTable('title')">Title</th>
+            <th style="cursor: pointer" onclick="sortTable('author')">Author</th>
+            <th style="cursor: pointer" onclick="sortTable('num_of_pages')">Pages</th>
+            <th style="cursor: pointer" onclick="sortTable('price')">Price</th>
+            <th style="cursor: pointer" onclick="sortTable('category')">Category</th>
             <th>Image</th>
-            <th>Created On/At</th>
+            <th style="cursor: pointer" onclick="sortTable('created_on')">Created On/At</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -69,7 +69,38 @@
     </tbody>
 </table>
 
-<partial name="_PagingPartial" model="@Model" />
+<!--Pagination-->
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search">Previous</a>
+        </li>
+        @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+            }
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.CurrentPageNumber
+            </span>
+        </li>
+        @for (int i = Model.CurrentPageNumber + 1; i <= Model.CurrentPageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search">Next</a>
+        </li>
+    </ul>
+</nav>
+
 
 @*<nav>
     <ul class="pagination">

@@ -8,7 +8,6 @@
 
         public string Author { get; set; }
 
-        // public string ISBN { get; set; }
         public int NumOfPages { get; set; }
 
         public decimal Price { get; set; }

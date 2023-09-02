@@ -15,14 +15,14 @@
 
         [HttpGet]
 
-        public async Task<IActionResult> All(int id = 1, int itemsPerPage = 3)
+        public async Task<IActionResult> All(int page = 1, int itemsPerPage = 3, string? search = null)
         {
-            if (id <= 0)
+            if (page <= 0)
             {
                 return this.NotFound();
             }
 
-            BooksListViewModel model = await this.bookService.GetAll(id, itemsPerPage);
+            BooksListViewModel model = await this.bookService.GetAll(page, itemsPerPage, search);
             return this.View(model);
         }
     }
