@@ -15,7 +15,7 @@
 
         Task<MessageDetailsViewModel> DetailsById(int id);
 
-        Task<int>GetIndex(int id);
+        Task<int> GetIndex(int id);
 
         Task DeleteAsync(Message message);
     }

@@ -83,5 +83,11 @@
         public const string BookCreated = "Book created successfully"!;
 
         public const string BookCreationFailed = "Something went wrong! Book could not be created! Please try again!";
+
+        public const string BookExists = "Book with this ISBN already created!";
+
+        public const string ISBNExists = "Book with same ISBN already exists! Please check / amend if necessary!";
+
+        public const string BookEdited = "Book details updated successfully!";
     }
 }

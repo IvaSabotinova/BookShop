@@ -7,6 +7,14 @@
     <h3 class="text-center mt-7 mb-7">No Books Found!</h3>
 }
 
+@if (this.TempData.ContainsKey(Message))
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@this.TempData[Message]</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+
 <div class="row mb-3">
     <div class="col">
         <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>

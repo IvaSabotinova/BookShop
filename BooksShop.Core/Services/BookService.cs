@@ -9,6 +9,7 @@
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
+    using static BooksShop.Infrastructure.Data.Constants;
 
     public class BookService : IBookService
     {
@@ -24,26 +25,6 @@
             this.booksRepo = booksRepo;
             this.categoryRepo = categoryRepo;
             this.mapper = mapper;
-        }
-
-        public async Task<IEnumerable<SelectListItem>> GetAllCategories()
-        {
-            return await this.categoryRepo.AllAsNoTracking()
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.Name,
-                })
-                .ToListAsync();
-        }
-
-        public async Task CreateBook(BookInputModel model)
-        {
-            Book newBook = this.mapper.Map<Book>(model);
-
-            // TODO - Save image
-            await this.booksRepo.AddAsync(newBook);
-            await this.booksRepo.SaveChangesAsync();
         }
 
         public async Task<int> GetBooksCount(string? search = null)
@@ -127,6 +108,100 @@
                 Column = column,
                 Order = order,
             };
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllCategories()
+        {
+            return await this.categoryRepo.AllAsNoTracking()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                })
+                .ToListAsync();
+        }
+
+        public async Task CreateBookAsync(BookInputModel model, string webRootPath)
+        {
+            Book book = await this.booksRepo.AllAsNoTracking()
+                .FirstOrDefaultAsync(x => x.ISBN == model.ISBN);
+
+            if (book != null)
+            {
+                throw new InvalidOperationException(BookExists);
+            }
+
+            Book newBook = this.mapper.Map<Book>(model);
+
+            // Save image to wwwroot
+            string fullImageURL = webRootPath + newBook.ImageUrl;
+
+            using FileStream fileStream = new FileStream(fullImageURL, FileMode.Create);
+            await model.Image.CopyToAsync(fileStream);
+
+            await this.booksRepo.AddAsync(newBook);
+            await this.booksRepo.SaveChangesAsync();
+        }
+
+        public async Task<Book> GetBookById(int id)
+            => await this.booksRepo.All()
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<BookEditModel> GetBookForEdit(int id)
+        {
+            return await this.booksRepo.All()
+                .Where(x => x.Id == id)
+                .ProjectTo<BookEditModel>(this.mapper.ConfigurationProvider)
+                .FirstAsync();
+        }
+
+        public async Task EditBookAsync(BookEditModel model, string webRootPath)
+        {
+            Book otherBookWithSameISBN = await this.booksRepo.AllAsNoTracking()
+                .Where(x => x.Id != model.Id)
+                .Where(x => x.ISBN == model.ISBN)
+                .FirstOrDefaultAsync();
+
+            if (otherBookWithSameISBN != null)
+            {
+                throw new InvalidOperationException(ISBNExists);
+            }
+
+            Book editedBook = this.mapper.Map<Book>(model);
+
+            if (model.ImageFile != null)
+            {
+                editedBook.ImageUrl = "/images/books/" + Guid.NewGuid().ToString() + Path.GetExtension(model.ImageFile.FileName);
+
+                // Save new image to wwwroot
+                string fullImageURL = webRootPath + editedBook.ImageUrl;
+
+                using FileStream fileStream = new FileStream(fullImageURL, FileMode.Create);
+                await model.ImageFile.CopyToAsync(fileStream);
+
+                // Delete old image
+                string oldImagePath = webRootPath + model.ImageUrl;
+
+                if (File.Exists(oldImagePath))
+                {
+                    File.Delete(oldImagePath);
+                }
+            }
+
+            this.booksRepo.Update(editedBook);
+            await this.booksRepo.SaveChangesAsync();
+        }
+
+        public async Task DeleteBookAsync(int id, string webRootPath)
+        {
+            Book book = await this.GetBookById(id);
+            string bookImageUrl = webRootPath + book.ImageUrl;
+            if (book != null)
+            {
+                this.booksRepo.Delete(book);
+                await this.booksRepo.SaveChangesAsync();
+                File.Delete(bookImageUrl);
+            }
         }
     }
 }

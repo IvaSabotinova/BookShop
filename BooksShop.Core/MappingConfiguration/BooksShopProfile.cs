@@ -21,7 +21,10 @@
             // Books
             this.CreateMap<Book, BookInListViewModel>();
             this.CreateMap<BookInputModel, Book>()
-                .ForMember(x => x.ImageUrl, opt => opt.Ignore());
+              .ForMember(x => x.ImageUrl, opt => opt
+              .MapFrom(src => "/images/books/" + Guid.NewGuid().ToString() + Path.GetExtension(src.Image.FileName)));
+            this.CreateMap<Book, BookEditModel>();
+            this.CreateMap<BookEditModel, Book>();
         }
     }
 }
