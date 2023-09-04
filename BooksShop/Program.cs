@@ -7,6 +7,7 @@ namespace BooksShop
     using BooksShop.Core.Services;
     using BooksShop.Data;
     using BooksShop.Infrastructure.Common;
+    using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +23,8 @@ namespace BooksShop
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -33,6 +35,16 @@ namespace BooksShop
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // builder.Services.AddAutoMapper(typeof(IContactService).Assembly, typeof(ContactController).Assembly);
+
+            builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(60 * 60 * 24); // 24 hours
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -55,6 +67,8 @@ namespace BooksShop
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

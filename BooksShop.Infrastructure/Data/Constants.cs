@@ -89,5 +89,12 @@
         public const string ISBNExists = "Book with same ISBN already exists! Please check / amend if necessary!";
 
         public const string BookEdited = "Book details updated successfully!";
+
+        // ApplicationUser constants
+        public const int MaxLengthUserFirstName = 26;
+
+        public const int MaxLengthUserLastName = 30;
+
+        public const int MaxLengthUserAddress = 120;
     }
 }
