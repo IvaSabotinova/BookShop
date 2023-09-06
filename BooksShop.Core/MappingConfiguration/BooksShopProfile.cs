@@ -3,7 +3,9 @@
     using AutoMapper;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Core.ViewModels.Messages;
+    using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
+    using System.Security.Claims;
 
     public class BooksShopProfile : Profile
     {
@@ -25,6 +27,10 @@
               .MapFrom(src => "/images/books/" + Guid.NewGuid().ToString() + Path.GetExtension(src.Image.FileName)));
             this.CreateMap<Book, BookEditModel>();
             this.CreateMap<BookEditModel, Book>();
+
+            // Users
+            this.CreateMap<ApplicationUser, UserViewModel>()
+                .ForMember(x => x.Role, mo => mo.Ignore());
         }
     }
 }

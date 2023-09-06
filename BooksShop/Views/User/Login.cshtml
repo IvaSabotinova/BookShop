@@ -1,0 +1,43 @@
+﻿@model LoginViewModel
+
+<div class="card mx-auto" style="width: 400px;">
+    <div class="card-body">
+        <h2 class="text-center mb-5">Welcome, please login</h2>
+
+  @*      @if (this.TempData.ContainsKey(Message))
+        {
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>@this.TempData[Message]</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }*@
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" asp-for="UserName">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="col d-grid">
+                    <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+                </div>
+            </div>
+
+           @* <a class="btn btn-link" href="/Auth/ForgotPassword" role="button">Reset password</a>*@
+
+        </form>
+
+    </div>
+</div>

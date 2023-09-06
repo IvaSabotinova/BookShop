@@ -16,13 +16,16 @@
 }
 
 <div class="row mb-3">
-    <div class="col">
-        <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>
-    </div>
+    @if (this.User.IsInRole(AdministratorRoleName))
+    {
+        <div class="col">
+            <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>
+        </div>
+    }
     <div class="col">
         <form method="get" class="d-flex">
             <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by Title or Author">
-            <button class="btn btn-outline-success" type="submit">Search</button>           
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
 </div>
@@ -69,8 +72,11 @@
                 <td><img src="@book.ImageUrl" width="100"></td>
                 <td>@book.CreatedOn</td>
                 <td style="white-space:nowrap">
-                    <a class="btn btn-primary btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" onclick="return confirm('Are you sure you want to delete that book?')">Delete</a>
+                    @if (this.User.IsInRole(AdministratorRoleName))
+                    {
+                        <a class="btn btn-primary btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-area="Administration" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" onclick="return confirm('Are you sure you want to delete that book?')">Delete</a>
+                    }
                 </td>
             </tr>
         }
@@ -81,7 +87,9 @@
 
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
-        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+        <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+ }">
             <a class="page-link" asp-action="All" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">Previous</a>
         </li>
         @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
@@ -103,7 +111,9 @@
                 <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">@i</a></li>
             }
         }
-        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+        <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
             <a class="page-link" asp-action="All" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search" asp-route-column="@Model.Column" asp-route-order="@Model.Order">Next</a>
         </li>
     </ul>

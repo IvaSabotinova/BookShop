@@ -1,0 +1,163 @@
+﻿@model UserViewModel
+
+<h2 class="my-3">Profile</h2>
+
+@*@if (Model.errorMessage.Length > 0)
+{
+	<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+		<strong>@Model.errorMessage</strong>
+		<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+	</div>
+}
+else if (Model.successMessage.Length > 0)
+{
+	<div class='alert alert-success alert-dismissible fade show' role='alert'>
+		<strong>@Model.successMessage</strong>
+		<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+	</div>
+}*@
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">First Name</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.FirstName">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Last Name</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.LastName">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Email</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Email">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Phone</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.PhoneNumber">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Address</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@Model.Address">
+	</div>
+</div>
+
+<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Role</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@(Model.Role ?? "None")">
+	</div>
+</div>
+
+@*<div class="row mb-2">
+	<label class="col-sm-3 col-form-label">Create At</label>
+	<div class="col-sm-6">
+		<input type="text" readonly class="form-control-plaintext" value="@currentCreatedAt">
+	</div>
+</div>*@
+
+<div class="row mb-2">
+	<div class="offset-sm-3 col-sm-6">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal">Edit</button>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form method="post">
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">First Name</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="FirstName">
+							<span asp-validation-for="FirstName" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Last Name</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="LastName">
+							<span asp-validation-for="LastName" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Email</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="Email">
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Phone</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="PhoneNumber">
+							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Address</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="Address">
+							<span asp-validation-for="Address" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="offset-sm-4">
+							<button type="submit" class="btn btn-primary" name="action" value="profile">Submit</button>
+						</div>
+					</div>
+
+			@*	<hr />
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Password</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="password" asp-for="Password">
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-2">
+						<label class="col-sm-4 col-form-label">Confirm Password</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="password" asp-for="ConfirmPassword">
+							<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="offset-sm-4">
+							<button type="submit" class="btn btn-primary" name="action" value="password">Submit</button>
+						</div>
+					</div>*@
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

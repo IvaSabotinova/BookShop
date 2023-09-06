@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BooksShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230904175126_ApplicationUserCreate")]
-    partial class ApplicationUserCreate
+    [Migration("20230906074000_UsersAndRolesConfiguration")]
+    partial class UsersAndRolesConfiguration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,8 @@ namespace BooksShop.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(26)
-                        .HasColumnType("nvarchar(26)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -105,6 +105,48 @@ namespace BooksShop.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "283073f1-cc28-485a-ab58-44f4ed128264",
+                            AccessFailedCount = 0,
+                            Address = "Izgrev block 41, Bourgas 8000, Bulgaria",
+                            ConcurrencyStamp = "b4219209-9d86-4cc2-b057-43f8e90ee157",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Iva",
+                            LastName = "Sabotinova",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBAZfAThmipgnh2k7DfH4mUq1psLIIygaxvVsYz34G4xhceF0Jkgh93XSQ+SLC+i0g==",
+                            PhoneNumberConfirmed = false,
+                            RegisteredOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3502),
+                            SecurityStamp = "01e07df9-1f57-4d7c-b8ec-d641ef041b1b",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "9a9b36f7-4a83-48c8-91d3-9136426dbee9",
+                            AccessFailedCount = 0,
+                            Address = "Slaveykov block 33, Bourgas 8000, Bulgaria",
+                            ConcurrencyStamp = "c2bf69cb-88c6-4392-bbf8-03bfe22ad3f2",
+                            Email = "client@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Pesho",
+                            LastName = "Martinov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLIENT@GMAIL.COM",
+                            NormalizedUserName = "CLIENT",
+                            PasswordHash = "AQAAAAEAACcQAAAAECPsLfCg1wLh8QUR9scTI09+1t+tF+6F7u173FRMVusmA2dISwKSMZzsEJBXLL/zdQ==",
+                            PhoneNumberConfirmed = false,
+                            RegisteredOn = new DateTime(2023, 9, 6, 10, 40, 0, 55, DateTimeKind.Local).AddTicks(5079),
+                            SecurityStamp = "52ba16ed-02f4-4439-9fba-fc1d43787d14",
+                            TwoFactorEnabled = false,
+                            UserName = "client"
+                        });
                 });
 
             modelBuilder.Entity("BooksShop.Infrastructure.Data.Book", b =>
@@ -162,7 +204,7 @@ namespace BooksShop.Data.Migrations
                             Id = 1,
                             Author = "Bradley R. Schiller",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6571),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(2967),
                             ISBN = "007100940X",
                             ImageUrl = "/images/books/90e0e436-1c66-41ad-88e6-e1a153404144.jpg",
                             NumOfPages = 969,
@@ -174,7 +216,7 @@ namespace BooksShop.Data.Migrations
                             Id = 2,
                             Author = "John Stuart Mill",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6611),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3009),
                             ISBN = "OL25914464M",
                             ImageUrl = "/images/books/73174e87-d6b4-4604-9712-7330ab87ed72.jpg",
                             NumOfPages = 1013,
@@ -186,7 +228,7 @@ namespace BooksShop.Data.Migrations
                             Id = 3,
                             Author = "Jose Rizal",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6614),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3011),
                             ISBN = "OL14042495M",
                             ImageUrl = "/images/books/b8422c70-aebe-4333-8908-0a59b53e9ab3.jpg",
                             NumOfPages = 502,
@@ -198,7 +240,7 @@ namespace BooksShop.Data.Migrations
                             Id = 4,
                             Author = "Andrew S. Tanenbaum",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6617),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3014),
                             ISBN = "013162959X",
                             ImageUrl = "/images/books/0355b9fb-bf1b-4ae5-a3b9-a88ea551f1b5.jpg",
                             NumOfPages = 658,
@@ -210,7 +252,7 @@ namespace BooksShop.Data.Migrations
                             Id = 5,
                             Author = "June Jamrich Parsons and Dan Oja",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6619),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3017),
                             ISBN = "0760034397",
                             ImageUrl = "/images/books/e538ff43-dded-46c1-b7e9-f33cd2096314.jpg",
                             NumOfPages = 313,
@@ -222,7 +264,7 @@ namespace BooksShop.Data.Migrations
                             Id = 6,
                             Author = "Robert H. Blissmer",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6623),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3020),
                             ISBN = "0471617830",
                             ImageUrl = "/images/books/e5089e94-d32f-43f0-9c85-25b5ecdfcd2e.jpg",
                             NumOfPages = 445,
@@ -234,7 +276,7 @@ namespace BooksShop.Data.Migrations
                             Id = 7,
                             Author = "Mario F. Triola",
                             CategoryId = 3,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6626),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3023),
                             ISBN = "0805393277",
                             ImageUrl = "/images/books/04fe7e81-299e-4b26-b1fd-0e1a3149c9da.jpg",
                             NumOfPages = 581,
@@ -246,7 +288,7 @@ namespace BooksShop.Data.Migrations
                             Id = 8,
                             Author = "Howard Anton",
                             CategoryId = 3,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6629),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3026),
                             ISBN = "0471153060",
                             ImageUrl = "/images/books/005f0140-65ad-4b24-8f05-b2d45f274f49.jpg",
                             NumOfPages = 1130,
@@ -258,7 +300,7 @@ namespace BooksShop.Data.Migrations
                             Id = 9,
                             Author = "Silvanus Phillips Thompson",
                             CategoryId = 3,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6631),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3028),
                             ISBN = "0312114109",
                             ImageUrl = "/images/books/8b457390-2df6-4f02-9a0b-6b3fe4890d85.jpg",
                             NumOfPages = 250,
@@ -270,7 +312,7 @@ namespace BooksShop.Data.Migrations
                             Id = 10,
                             Author = "Soraya de Chadarevian and Harmke Kamminga",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6662),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3032),
                             ISBN = "9057022931",
                             ImageUrl = "/images/books/aa23bf8b-685c-430d-a256-7b684dd1cb90.jpg",
                             NumOfPages = 304,
@@ -282,7 +324,7 @@ namespace BooksShop.Data.Migrations
                             Id = 11,
                             Author = "James A. Gillespie",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6665),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3035),
                             ISBN = "0521381835",
                             ImageUrl = "/images/books/27486390-9981-468b-93ad-c4cb1c8087ab.jpg",
                             NumOfPages = 358,
@@ -294,7 +336,7 @@ namespace BooksShop.Data.Migrations
                             Id = 12,
                             Author = "Pickering, George White Sir",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6668),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3037),
                             ISBN = "019519800X",
                             ImageUrl = "/images/books/3faa928e-f41d-4710-a469-b8b357eef1ba.jpg",
                             NumOfPages = 327,
@@ -306,7 +348,7 @@ namespace BooksShop.Data.Migrations
                             Id = 13,
                             Author = "Richard G. Lipsey",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6671),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3040),
                             ISBN = "0060440163",
                             ImageUrl = "/images/books/fcc69c01-79fd-45b8-82cc-d7011b5493bc.jpg",
                             NumOfPages = 927,
@@ -318,7 +360,7 @@ namespace BooksShop.Data.Migrations
                             Id = 14,
                             Author = "Adam Smith and Andrew Skinner",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6673),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3043),
                             ISBN = "067940564X",
                             ImageUrl = "/images/books/b449a8b1-84f1-44dd-8c6d-e965b6efa90b.jpg",
                             NumOfPages = 620,
@@ -330,7 +372,7 @@ namespace BooksShop.Data.Migrations
                             Id = 15,
                             Author = "Hannah Arendt",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6677),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3046),
                             ISBN = "0226025926",
                             ImageUrl = "/images/books/3f3d222a-2401-437c-81b0-7db157cef7af.jpg",
                             NumOfPages = 365,
@@ -342,7 +384,7 @@ namespace BooksShop.Data.Migrations
                             Id = 16,
                             Author = "Kenneth C. Laudon",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6679),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3049),
                             ISBN = "0072472618",
                             ImageUrl = "/images/books/3f569900-cc2e-4f9d-ac96-54cddcd7e4e6.jpg",
                             NumOfPages = 632,
@@ -354,7 +396,7 @@ namespace BooksShop.Data.Migrations
                             Id = 17,
                             Author = "Larry E. Long",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6682),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3051),
                             ISBN = "013156241X",
                             ImageUrl = "/images/books/22ec6be5-99cc-4e1b-91b8-0459f964cfdf.jpg",
                             NumOfPages = 677,
@@ -366,7 +408,7 @@ namespace BooksShop.Data.Migrations
                             Id = 18,
                             Author = "Marshall C. Yovits",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6686),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3055),
                             ISBN = "012012114X",
                             ImageUrl = "/images/books/27cd64b2-01d7-4d33-bf31-ba2d9f5ef27a.jpg",
                             NumOfPages = 299,
@@ -378,7 +420,7 @@ namespace BooksShop.Data.Migrations
                             Id = 19,
                             Author = "Angela Belli and John L. Coulehan",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6689),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3058),
                             ISBN = "0877456372",
                             ImageUrl = "/images/books/e194f5d1-1914-4ab7-ba69-f2c24cd46e03.jpg",
                             NumOfPages = 160,
@@ -390,7 +432,7 @@ namespace BooksShop.Data.Migrations
                             Id = 20,
                             Author = "AnElissa Lucas",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6691),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3060),
                             ISBN = "0030594545",
                             ImageUrl = "/images/books/6dff32cc-dcbc-425a-8406-6463b36678df.jpg",
                             NumOfPages = 188,
@@ -402,7 +444,7 @@ namespace BooksShop.Data.Migrations
                             Id = 21,
                             Author = "Richard Selzer",
                             CategoryId = 4,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6694),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3063),
                             ISBN = "0312186878",
                             ImageUrl = "/images/books/3cc142ee-2ac0-4cee-8a63-d88d271d0c86.jpg",
                             NumOfPages = 389,
@@ -414,7 +456,7 @@ namespace BooksShop.Data.Migrations
                             Id = 22,
                             Author = "Elliott, Carl and John D. Lantos",
                             CategoryId = 5,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6697),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3106),
                             ISBN = "0822323362",
                             ImageUrl = "/images/books/3c0e44e3-4cb5-4c12-845e-5179e4b82717.jpg",
                             NumOfPages = 167,
@@ -426,7 +468,7 @@ namespace BooksShop.Data.Migrations
                             Id = 23,
                             Author = "Aldous Huxley",
                             CategoryId = 5,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6699),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3109),
                             ISBN = "0060120355",
                             ImageUrl = "/images/books/86960c70-fd36-4ed1-94f9-3ecb8c47aa5a.jpg",
                             NumOfPages = 311,
@@ -438,7 +480,7 @@ namespace BooksShop.Data.Migrations
                             Id = 24,
                             Author = "Battista Guarini",
                             CategoryId = 5,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6702),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3112),
                             ISBN = "OL17974570M",
                             ImageUrl = "/images/books/b977e8e1-30eb-44a8-b70b-88a87fb7bbe5.jpg",
                             NumOfPages = 262,
@@ -450,7 +492,7 @@ namespace BooksShop.Data.Migrations
                             Id = 25,
                             Author = "Ernest F. Haeussler",
                             CategoryId = 3,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6705),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3114),
                             ISBN = "0130338559",
                             ImageUrl = "/images/books/d31de0aa-e93a-4122-ae68-a894811f66d1.jpg",
                             NumOfPages = 822,
@@ -462,7 +504,7 @@ namespace BooksShop.Data.Migrations
                             Id = 26,
                             Author = "John G. Kemeny",
                             CategoryId = 3,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6707),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3117),
                             ISBN = "013468835X",
                             ImageUrl = "/images/books/875ef8c0-31d5-476f-bd2c-0b1bd35aea0f.jpg",
                             NumOfPages = 465,
@@ -474,7 +516,7 @@ namespace BooksShop.Data.Migrations
                             Id = 27,
                             Author = "Adam Freeman",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2023, 9, 4, 20, 51, 26, 452, DateTimeKind.Local).AddTicks(6710),
+                            CreatedOn = new DateTime(2023, 9, 6, 10, 40, 0, 54, DateTimeKind.Local).AddTicks(3119),
                             ISBN = "OL5818599M",
                             ImageUrl = "/images/books/b907a2b2-c4f3-4233-aef4-a0c46098a6df.jpg",
                             NumOfPages = 264,
@@ -602,6 +644,22 @@ namespace BooksShop.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ec3a92cc-8b64-4b83-bc6a-c20031faa327",
+                            ConcurrencyStamp = "6610b899-c6bf-4036-9831-ad602745c824",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "b1353077-7dcd-4f94-820b-f8af8feb9690",
+                            ConcurrencyStamp = "b2e26a49-1cd2-47b3-ba2b-2211e7d851e6",
+                            Name = "Client",
+                            NormalizedName = "CLIENT"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -691,6 +749,18 @@ namespace BooksShop.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "283073f1-cc28-485a-ab58-44f4ed128264",
+                            RoleId = "ec3a92cc-8b64-4b83-bc6a-c20031faa327"
+                        },
+                        new
+                        {
+                            UserId = "9a9b36f7-4a83-48c8-91d3-9136426dbee9",
+                            RoleId = "b1353077-7dcd-4f94-820b-f8af8feb9690"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

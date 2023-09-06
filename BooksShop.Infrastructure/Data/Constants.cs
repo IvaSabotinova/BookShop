@@ -2,21 +2,45 @@
 {
     public static class Constants
     {
+        public const string AdministratorRoleName = "Administrator";
+
+        public const string ClientRoleName = "Client";
+
         public const string Message = "Message";
 
         public const string SuccessMessage = "Message successfully sent!";
 
         public const string ErrorMessage = "Please fill in all required fields!";
 
+        public const int UserNameMaxLength = 50;
+
+        public const int UserNameMinLength = 5;
+
         public const int FirstNameMaxLength = 30;
+
+        public const int FirstNameMinLength = 2;
 
         public const int LastNameMaxLength = 30;
 
-        public const int PhoneNumberMaxLenght = 20;
+        public const int LastNameMinLength = 2;
 
         public const int EmailMaxLenght = 330;
 
+        public const int EmailMinLength = 5;
+
+        public const int PhoneNumberMaxLenght = 20;
+
+        public const int AddressMaxLength = 120;
+
+        public const int AddressMinLength = 10;
+
+        public const int PasswordMaxLength = 50;
+
+        public const int PasswordMinLength = 5;
+
         public const int MessageContentMaxLenght = 7000;
+
+        public const string UserNameErrorMessage = "Username is required!";
 
         public const string FirstNameErrorMessage = "The First Name is required.";
 
@@ -29,6 +53,8 @@
         public const string EmailErrorMessage = "The Email is required.";
 
         public const string DisplayEmail = "Email*";
+
+        public const string AddressErrorMessage = "The address is required.";
 
         public const string SubjectErrorMessage = "The Subject is required.";
 
@@ -90,11 +116,7 @@
 
         public const string BookEdited = "Book details updated successfully!";
 
-        // ApplicationUser constants
-        public const int MaxLengthUserFirstName = 26;
+        public const string SignInErrorMessage = "Attempt for signing-in failed!";
 
-        public const int MaxLengthUserLastName = 30;
-
-        public const int MaxLengthUserAddress = 120;
     }
 }

@@ -8,7 +8,7 @@
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.HasData(this.CreateUsers());
+             builder.HasData(this.CreateUsers());
         }
 
         private List<ApplicationUser> CreateUsers()
@@ -24,6 +24,7 @@
                 NormalizedUserName = "ADMIN",
                 Email = "admin@gmail.com",
                 NormalizedEmail = "ADMIN@GMAIL.COM",
+                SecurityStamp = Guid.NewGuid().ToString(),
                 EmailConfirmed = true,
                 FirstName = "Iva",
                 LastName = "Sabotinova",
@@ -39,6 +40,7 @@
                 Id = "9a9b36f7-4a83-48c8-91d3-9136426dbee9",
                 UserName = "client",
                 NormalizedUserName = "CLIENT",
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Email = "client@gmail.com",
                 NormalizedEmail = "CLIENT@GMAIL.COM",
                 EmailConfirmed = true,

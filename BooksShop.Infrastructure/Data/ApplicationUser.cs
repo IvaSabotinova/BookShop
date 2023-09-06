@@ -6,13 +6,18 @@
 
     public class ApplicationUser : IdentityUser<string>
     {
-        [MaxLength(MaxLengthUserFirstName)]
+        public ApplicationUser()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        [MaxLength(FirstNameMaxLength)]
         public string FirstName { get; set; }
 
-        [MaxLength(MaxLengthUserLastName)]
+        [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; }
 
-        [MaxLength(MaxLengthUserAddress)]
+        [MaxLength(AddressMaxLength)]
         public string Address { get; set; }
 
         public DateTime RegisteredOn { get; set; }
