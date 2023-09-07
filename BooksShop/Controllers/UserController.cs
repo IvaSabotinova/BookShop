@@ -13,18 +13,15 @@
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUserService userService;
 
         public UserController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            RoleManager<IdentityRole> roleManager,
             IUserService userService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.roleManager = roleManager;
             this.userService = userService;
         }
 
@@ -119,7 +116,7 @@
                 return this.NotFound();
             }
 
-            UserViewModel model = await this.userService.GetUserProfile(currentUser);
+            UserEditModel model = await this.userService.GetUserProfile(id);
 
             string? role = this.userManager.GetRolesAsync(currentUser).Result
                .FirstOrDefault();
@@ -130,6 +127,37 @@
             }
 
             return this.View(model);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Profile(UserEditModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            ApplicationUser user = await this.userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                return this.NotFound();
+            }
+
+            try
+            {
+                await this.userService.UpdateUserAsync(user, model);
+                IdentityResult result = await this.userManager.UpdateAsync(user);
+                this.TempData[Constants.Message] = UserUpdatedSuccessfully;
+                return this.RedirectToAction(nameof(this.Profile));
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.TempData[Constants.Message] = ex.Message;
+                return this.View(model);
+            }
         }
     }
 }

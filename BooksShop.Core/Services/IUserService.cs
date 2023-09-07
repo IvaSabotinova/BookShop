@@ -5,6 +5,15 @@
 
     public interface IUserService
     {
-        Task<UserViewModel> GetUserProfile(ApplicationUser user);
+        Task<UserEditModel> GetUserProfile(string id);
+
+        Task UpdateUserAsync(ApplicationUser user, UserEditModel model);
+
+        Task<int> GetUsersCount(string? search);
+
+        Task<UsersListViewModel> GetAll(
+           int page,
+           int itemsPerPage = 7,
+           string? search = null);
     }
 }

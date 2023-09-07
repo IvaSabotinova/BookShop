@@ -5,7 +5,6 @@
     using BooksShop.Core.ViewModels.Messages;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
-    using System.Security.Claims;
 
     public class BooksShopProfile : Profile
     {
@@ -29,8 +28,12 @@
             this.CreateMap<BookEditModel, Book>();
 
             // Users
-            this.CreateMap<ApplicationUser, UserViewModel>()
-                .ForMember(x => x.Role, mo => mo.Ignore());
+            this.CreateMap<ApplicationUser, UserEditModel>()
+                .ForMember(x => x.Role, src => src.Ignore());
+            this.CreateMap<ApplicationUser, UserInListViewModel>()
+                .ForMember(x => x.Name, mo =>
+                mo.MapFrom(src => src.FirstName + " " + src.LastName))
+                .ForMember(x => x.Role, src => src.Ignore());
         }
     }
 }

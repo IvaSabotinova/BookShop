@@ -1,0 +1,82 @@
+﻿@model UsersListViewModel
+
+<h2 class="my-3">List Users</h2>
+
+@if (!Model.Users.Any())
+{
+    <h3 class="text-center mt-7 mb-7">No Users Found!</h3>
+}
+
+<div class="col-6 offset-6 mb-3">
+    <form method="get" class="d-flex">
+        <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by part or whole Name or Phone number">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Role</th>
+            <th>Registered On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserInListViewModel user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Address</td>
+                @if (user.Role.Equals(AdministratorRoleName))
+                {
+                    <td><span class="badge bg-danger">@user.Role</span></td>
+                }
+                else
+                {
+                    <td><span class="badge bg-primary">@user.Role</span></td>
+                }
+                <td>@user.RegisteredOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--Pagination-->
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search">Previous</a>
+        </li>
+        @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+            }
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.CurrentPageNumber
+            </span>
+        </li>
+        @for (int i = Model.CurrentPageNumber + 1; i <= Model.CurrentPageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-page="@i" asp-route-search="@Model.Search">@i</a></li>
+            }
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search">Next</a>
+        </li>
+    </ul>
+</nav>

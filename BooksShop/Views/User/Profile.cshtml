@@ -1,21 +1,14 @@
-﻿@model UserViewModel
+﻿@model UserEditModel
 
 <h2 class="my-3">Profile</h2>
 
-@*@if (Model.errorMessage.Length > 0)
+@if (this.TempData.ContainsKey(Message))
 {
 	<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-		<strong>@Model.errorMessage</strong>
+		<strong>@this.TempData[Message]</strong>
 		<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 	</div>
 }
-else if (Model.successMessage.Length > 0)
-{
-	<div class='alert alert-success alert-dismissible fade show' role='alert'>
-		<strong>@Model.successMessage</strong>
-		<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-	</div>
-}*@
 
 <div class="row mb-2">
 	<label class="col-sm-3 col-form-label">First Name</label>
@@ -59,13 +52,6 @@ else if (Model.successMessage.Length > 0)
 	</div>
 </div>
 
-@*<div class="row mb-2">
-	<label class="col-sm-3 col-form-label">Create At</label>
-	<div class="col-sm-6">
-		<input type="text" readonly class="form-control-plaintext" value="@currentCreatedAt">
-	</div>
-</div>*@
-
 <div class="row mb-2">
 	<div class="offset-sm-3 col-sm-6">
 		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal">Edit</button>
@@ -83,6 +69,7 @@ else if (Model.successMessage.Length > 0)
 			</div>
 			<div class="modal-body">
 				<form method="post">
+					<input type="hidden" asp-for="Id" />					
 					<div class="row mb-2">
 						<label class="col-sm-4 col-form-label">First Name</label>
 						<div class="col-sm-8">
@@ -125,7 +112,7 @@ else if (Model.successMessage.Length > 0)
 
 					<div class="row">
 						<div class="offset-sm-4">
-							<button type="submit" class="btn btn-primary" name="action" value="profile">Submit</button>
+							<button type="submit" class="btn btn-primary" name="Update" value="profile">Submit</button>
 						</div>
 					</div>
 

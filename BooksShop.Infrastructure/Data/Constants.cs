@@ -118,5 +118,7 @@
 
         public const string SignInErrorMessage = "Attempt for signing-in failed!";
 
+        public const string UserUpdatedSuccessfully = "Details updated successfully!";
+
     }
 }
