@@ -1,21 +1,29 @@
 ﻿namespace BooksShop.Controllers
 {
     using System.Diagnostics;
+    using BooksShop.Core.Services;
     using BooksShop.Core.ViewModels;
+    using BooksShop.Core.ViewModels.Books;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
+        private readonly IBookService bookService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IBookService bookService)
         {
             this.logger = logger;
+            this.bookService = bookService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return this.View();
+            IEnumerable<BookViewModel> model = await this.bookService.GetFourNewestBooks();
+            return this.View(model);
         }
 
         public IActionResult Privacy()

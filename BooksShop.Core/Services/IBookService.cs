@@ -26,5 +26,7 @@
         Task EditBookAsync(BookEditModel model, string webRootPath);
 
         Task DeleteBookAsync(int id, string webRootPath);
+
+        Task<IEnumerable<BookViewModel>> GetFourNewestBooks();
     }
 }

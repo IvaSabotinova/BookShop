@@ -21,13 +21,22 @@
         <div class="col">
             <a class='btn btn-primary' asp-area="Administration" asp-controller="Book" asp-action="Create">New Book</a>
         </div>
+        <div class="col">
+            <form method="get" class="d-flex">
+                <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by Title or Author">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
     }
-    <div class="col">
-        <form method="get" class="d-flex">
-            <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by Title or Author">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
+    else
+    {
+        <div class="col-5">
+            <form method="get" class="d-flex">
+                <input class="form-control me-2" type="search" name="search" value="@Model.Search" placeholder="Search by Title or Author">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    }
 </div>
 
 <script>

@@ -26,6 +26,7 @@
               .MapFrom(src => "/images/books/" + Guid.NewGuid().ToString() + Path.GetExtension(src.Image.FileName)));
             this.CreateMap<Book, BookEditModel>();
             this.CreateMap<BookEditModel, Book>();
+            this.CreateMap<Book, BookViewModel>();
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()

@@ -203,5 +203,12 @@
                 File.Delete(bookImageUrl);
             }
         }
+
+        public async Task<IEnumerable<BookViewModel>> GetFourNewestBooks()
+        => await this.booksRepo.AllAsNoTracking()
+                .OrderByDescending(x => x.CreatedOn)
+                .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
+                .Take(4)
+                .ToListAsync();
     }
 }

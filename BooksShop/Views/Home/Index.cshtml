@@ -1,8 +1,102 @@
-﻿@{
+﻿@model IEnumerable<BookViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
+    ViewData["NoContainer"] = true;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .book-item img {
+        width: 100%;
+        height: 260px;
+        object-fit: contain;
+        background: radial-gradient(white 50%, lightblue 100%)
+    }
+
+    .book-item {
+        transition: all 0.3s ease;
+    }
+
+        .book-item:hover {
+            transform: scale(1.05);
+        }
+</style>
+
+<!--Hero section-->
+<div class="py-5" style="background-color: #08618d;">
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-6 pb-3">
+                <h1 class="display-2"><strong>Best Books</strong></h1>
+                <br />
+                <p>
+                    We have the best books in the world. You will love reading them.
+                    We have a large selection of books from different categories.
+                    You will definitely find what makes you happy.
+                </p>
+                <br />
+                <form class="d-flex" action="/Books">
+                    <input class="form-control me-2" name="search" placeholder="Search by Title or Author">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+
+            </div>
+            <div class="col-md-6">
+                <img src="/images/74f5b0ec-5ea0-4fdf-80d0-604a9249b71d.png" class="img-fluid rounded" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Newest Books section-->
+<div class="py-5">
+    <div class="container">
+        <h1 class="pb-5 text-center display-5"><strong>Newest Books</strong></h1>
+        <div class="row">
+            @foreach (BookViewModel book in Model)
+            {
+                <div class="col-lg-3 col-sm-6 my-2">
+                    <div class="card shadow text-center h-100 book-item">
+                        <img src="@book.ImageUrl" class="card-img-top p-3" alt="..." />
+                        <div class="card-body">
+                            <h4>@book.Title</h4>
+                            <p>Author: @book.Author, Category: @book.CategoryName, Pages: @book.NumOfPages</p>
+                            <h4>@(book.Price)$</h4>
+                            <a class="btn btn-primary btn-sm my-2" asp-route-id="@book.Id" role="button">Details</a>
+                            <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @book.Id)">
+                                Add to Cart <i class="bi bi-cart4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Top Sales section-->
+
+<div class="py-5" style="background-color: #e9ecf0;">
+    <div class="container">
+        <h1 class="pb-5 text-center display-5"><strong>Top Sales</strong></h1>
+        <div class="row">
+            @foreach (BookViewModel book in Model)
+            {
+                <div class="col-lg-3 col-sm-6 my-2">
+                    <div class="card shadow text-center h-100 book-item">
+                        <img src="@book.ImageUrl" class="card-img-top p-3" alt="..." />
+                        <div class="card-body">
+                            <h4>@book.Title</h4>
+                            <p>Author: @book.Author, Category: @book.CategoryName, Pages: @book.NumOfPages</p>
+                            <h4>@(book.Price)$</h4>
+                            <a class="btn btn-primary btn-sm my-2" asp-route-id="@book.Id" role="button">Details</a>
+                            <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @book.Id)">
+                                Add to Cart <i class="bi bi-cart4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
