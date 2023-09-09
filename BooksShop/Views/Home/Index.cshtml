@@ -62,7 +62,7 @@
                             <h4>@book.Title</h4>
                             <p>Author: @book.Author, Category: @book.CategoryName, Pages: @book.NumOfPages</p>
                             <h4>@(book.Price)$</h4>
-                            <a class="btn btn-primary btn-sm my-2" asp-route-id="@book.Id" role="button">Details</a>
+                            <a class="btn btn-primary btn-sm my-2" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" role="button">Details</a>
                             <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @book.Id)">
                                 Add to Cart <i class="bi bi-cart4"></i>
                             </button>
@@ -89,7 +89,7 @@
                             <h4>@book.Title</h4>
                             <p>Author: @book.Author, Category: @book.CategoryName, Pages: @book.NumOfPages</p>
                             <h4>@(book.Price)$</h4>
-                            <a class="btn btn-primary btn-sm my-2" asp-route-id="@book.Id" role="button">Details</a>
+                            <a class="btn btn-primary btn-sm my-2" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" role="button">Details</a>
                             <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @book.Id)">
                                 Add to Cart <i class="bi bi-cart4"></i>
                             </button>

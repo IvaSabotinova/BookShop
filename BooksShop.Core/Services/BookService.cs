@@ -210,5 +210,11 @@
                 .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
                 .Take(4)
                 .ToListAsync();
+
+        public async Task<BookDetailsViewModel> GetDetailsById(int id)
+        => await this.booksRepo.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .ProjectTo<BookDetailsViewModel>(this.mapper.ConfigurationProvider)
+                .FirstAsync();
     }
 }

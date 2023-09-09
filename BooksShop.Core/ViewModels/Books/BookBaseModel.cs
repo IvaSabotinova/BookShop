@@ -7,20 +7,20 @@
     public class BookBaseModel
     {
         [Required(ErrorMessage = TitleErrorMessage)]
-        [MaxLength(100, ErrorMessage = MaxLengthTitleErrorMessage)]
+        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = AuthorErrorMessage)]
-        [MaxLength(255, ErrorMessage = MaxLengthAuthorErrorMessage)]
+        [StringLength(AuthorMaxLength, MinimumLength = AuthorMinLength)]
         public string Author { get; set; }
 
         [Required(ErrorMessage = ISBNErrorMessage)]
-        [MaxLength(20, ErrorMessage = MaxLengthISBNErrorMessage)]
+        [StringLength(ISBNMaxLength, MinimumLength = ISBNMinLength)]
 
         public string ISBN { get; set; }
 
         [Required(ErrorMessage = NumOfPagesErrorMessage)]
-        [Range(1, 10000, ErrorMessage = NumOfPagesRangeErrorMessage)]
+        [Range(MinNumOfPages, MaxNumOfPages, ErrorMessage = NumOfPagesRangeErrorMessage)]
 
         public int NumOfPages { get; set; }
 
@@ -34,7 +34,7 @@
 
         public IEnumerable<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 
-        [MaxLength(1000, ErrorMessage = MaxLengthDescriptionErrorMessage)]
+        [MaxLength(DescriptionMaxLength, ErrorMessage = MaxLengthDescriptionErrorMessage)]
         public string? Description { get; set; } = null;
     }
 }

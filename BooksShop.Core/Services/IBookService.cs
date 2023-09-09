@@ -28,5 +28,7 @@
         Task DeleteBookAsync(int id, string webRootPath);
 
         Task<IEnumerable<BookViewModel>> GetFourNewestBooks();
+
+        Task<BookDetailsViewModel> GetDetailsById(int id);
     }
 }

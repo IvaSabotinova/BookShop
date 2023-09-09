@@ -24,6 +24,7 @@ namespace BooksShop.Infrastructure.Data
         [MaxLength(PhoneNumberMaxLenght)]
         public string? Phone { get; set; }
 
+        [MaxLength(SubjectMaxLength)]
         public string Subject { get; set; }
 
         [MaxLength(MessageContentMaxLenght)]

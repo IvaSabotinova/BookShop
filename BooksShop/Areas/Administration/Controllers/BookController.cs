@@ -20,24 +20,6 @@
         }
 
         [HttpGet]
-
-        public async Task<IActionResult> All(
-            int page = 1,
-            int itemsPerPage = 3,
-            string? search = null,
-            string? column = null,
-            string? order = null)
-        {
-            if (page <= 0)
-            {
-                return this.NotFound();
-            }
-
-            BooksListViewModel model = await this.bookService.GetAll(page, itemsPerPage, search, column, order);
-            return this.View(model);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Create()
         {
             BookInputModel model = new BookInputModel()
@@ -61,7 +43,7 @@
             {
                 await this.bookService.CreateBookAsync(model, this.webHostEnvironment.WebRootPath);
                 this.TempData[Constants.Message] = BookCreated;
-                return this.RedirectToAction(nameof(this.All));
+                return this.RedirectToAction("All", "Book", new { area = string.Empty });
             }
             catch (Exception ex)
             {
@@ -101,7 +83,7 @@
             {
                 await this.bookService.EditBookAsync(model, this.webHostEnvironment.WebRootPath);
                 this.TempData[Constants.Message] = BookEdited;
-                return this.RedirectToAction(nameof(this.All));
+                return this.RedirectToAction("All", "Book", new { area = string.Empty });
             }
             catch (Exception ex)
             {
@@ -115,7 +97,7 @@
         public async Task<IActionResult> Delete(int id)
         {
             await this.bookService.DeleteBookAsync(id, this.webHostEnvironment.WebRootPath);
-            return this.RedirectToAction(nameof(this.All));
+            return this.RedirectToAction("All", "Book", new { area = string.Empty });
         }
     }
 }

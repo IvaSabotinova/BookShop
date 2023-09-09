@@ -38,7 +38,13 @@
 
         public const int PasswordMinLength = 5;
 
+        public const int SubjectMaxLength = 120;
+
+        public const int SubjectMinLength = 2;
+
         public const int MessageContentMaxLenght = 7000;
+
+        public const int MessageContentMinLenght = 7;
 
         public const string UserNameErrorMessage = "Username is required!";
 
@@ -66,9 +72,11 @@
 
         public const string MaxLengthContentErrorMessage = "The Message should be less than 7000 characters";
 
-        public const string MinLengthContentErrorMessageContent = "The Message should be at least 5 characters";
+        public const string MinLengthContentErrorMessageContent = "The Message should be at least 7 characters";
 
         public const int TitleMaxLength = 100;
+
+        public const int TitleMinLength = 2;
 
         public const string MaxLengthTitleErrorMessage = "The Title cannot exceed 100 characters";
 
@@ -78,15 +86,23 @@
 
         public const int AuthorMaxLength = 255;
 
+        public const int AuthorMinLength = 2;
+
         public const string MaxLengthAuthorErrorMessage = "The Author cannot exceed 255 characters";
 
         public const string ISBNErrorMessage = "The ISBN is required";
 
         public const int ISBNMaxLength = 20;
 
+        public const int ISBNMinLength = 10;
+
         public const string MaxLengthISBNErrorMessage = "The ISBN cannot exceed 20 characters";
 
         public const string NumOfPagesErrorMessage = "The Number of Pages is required";
+
+        public const int MaxNumOfPages = 10000;
+
+        public const int MinNumOfPages = 1;
 
         public const string MaxNumOfPagesErrorMessage = "The Number of Pages cannot exceed 10000!";
 
@@ -98,13 +114,15 @@
 
         public const string DecimalType = "decimal(18,2)";
 
-        public const string MaxLengthDescriptionErrorMessage = "The Description cannot exceed 1000 characters";
+        public const string MaxLengthDescriptionErrorMessage = "The Description cannot exceed 3000 characters";
 
         public const int DescriptionMaxLength = 3000;
 
         public const string ImageErrorMessage = "The Image File is required";
 
         public const int CategoryNameMaxLength = 100;
+
+        public const int CategoryNameMinLength = 2;
 
         public const string BookCreated = "Book created successfully"!;
 

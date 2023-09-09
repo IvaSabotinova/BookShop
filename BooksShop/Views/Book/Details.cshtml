@@ -1,0 +1,75 @@
+﻿@model BookDetailsViewModel
+
+<h2 class="rounded text-center text-white p-2" style="background-color: #08618d;">Book Details</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="my-2 text-center sticky-top" style="top:10px;">
+            <img src="@Model.ImageUrl" class="img-fluid rounded" alt="...">
+            <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @Model.Id)">
+                Add to Cart <i class="bi bi-cart4"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <h4>Title</h4>
+            </div>
+            <div class="col-md-8">
+                <h4>@Model.Title</h4>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>Author</strong>
+            </div>
+            <div class="col-md-8">
+                @Model.Author
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>ISBN</strong>
+            </div>
+            <div class="col-md-8">
+                @Model.ISBN
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>Pages</strong>
+            </div>
+            <div class="col-md-8">
+                @Model.NumOfPages
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>Price</strong>
+            </div>
+            <div class="col-md-8">
+                @Model.Price
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>Category</strong>
+            </div>
+            <div class="col-md-8">
+                @Model.CategoryName
+            </div>
+        </div>
+
+        <p>
+            <strong>Description:</strong>
+            <br />
+            @Model.Description
+        </p>
+    </div>
+</div>

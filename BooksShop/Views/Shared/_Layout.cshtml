@@ -9,9 +9,45 @@
     <link rel="stylesheet" href="~/BooksShop.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
+<script>
+    function addToCart(button, bookID){
+        let oldCarValue = getCookieValue("shopping_cart");
+        if (oldCarValue){
+            oldCarValue += '-';            
+        }
+        let newCartValue = oldCarValue + bookID;
+
+        //update cookie
+        let date = new Date();
+        date.setDate(date.getDate() + 365); // this cookie expires after 365 days (1 year)
+        let expires = date.toUTCString();
+        document.cookie = 'shopping_cart=' + newCartValue + ';expires=' + expires + ';path=/'
+
+        // update the number of books in the shopping cart
+        let booksArray = newCartValue.split('-');
+        let count = booksArray.length;
+        document.getElementById('BookCountBadge').innerHTML = count;
+
+        button.innerHTML = "Added <i class='bi bi-check-lg'></i>";
+    }
+
+    function getCookieValue(cookieName){
+        // document.cookie contains all the cookies of our website with the following format
+        // cookie1=value1; cookie2=value2; cookie3=value3;
+        let cookiesArray = document.cookie.split(';');
+        for(let i = 0; i < cookiesArray.length; i++){
+            let currentCookie = cookiesArray[i];
+            if(currentCookie.includes(cookieName)){
+                const [name, value] = currentCookie.split('=');
+                return value;
+            }      
+        }        
+        return "";
+    }
+</script>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BooksShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,7 +65,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                    </ul>               
+                    </ul>
+                    @{
+                        string? cookieValue = this.Context.Request.Cookies["shopping_cart"];
+                        int cartSize = 0;
+                        if (!string.IsNullOrEmpty(cookieValue))
+                        {
+                            cartSize = cookieValue.Split("-").Length;
+                        }
+                    }
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark me-2" asp-area="" asp-action="/Cart">
+                                <i class="bi bi-cart4 text-danger h3"></i>
+                                <span id="BookCountBadge" class="badge rounded-pill bg-danger" style="vertical-align: top;">
+                                    @cartSize
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

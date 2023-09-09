@@ -27,6 +27,7 @@
             this.CreateMap<Book, BookEditModel>();
             this.CreateMap<BookEditModel, Book>();
             this.CreateMap<Book, BookViewModel>();
+            this.CreateMap<Book, BookDetailsViewModel>();
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()
