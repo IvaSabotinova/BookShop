@@ -45,5 +45,17 @@
            BookDetailsViewModel model = await this.bookService.GetDetailsById(id);
            return this.View(model);
         }
+
+        [HttpGet]
+
+        public async Task<IActionResult> AdvancedSearch()
+        {
+            BookAdvancedSearchAndPagingViewModel model = new BookAdvancedSearchAndPagingViewModel()
+            {
+                Categories = await this.bookService.GetAllCategories(),
+            };
+
+            return this.View(model);
+        }
     }
 }

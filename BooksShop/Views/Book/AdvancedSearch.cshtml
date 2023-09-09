@@ -1,0 +1,138 @@
+﻿@model BookAdvancedSearchAndPagingViewModel
+
+
+<h2 class="rounded text-center text-white p-2" style="background-color: #08618d;">List of Books</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="rounded text-white my-2 p-3 sticky-top" style="background-color: #08618d; top:10px;">
+            <h4 class="mb-3">Advanced Search</h4>
+
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Search</label>
+                    <input type="text" class="form-control" asp-for="Search" placeholder="Search by Title or Author">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <select class="form-select" asp-for="PriceRange" asp-items="@Html.GetEnumSelectList<PriceRange>()">
+                        <option>Any</option>
+                  @*      <option value="any">Any</option>
+                        <option value="0_50">Under 50$</option>
+                        <option value="50_100">50$ to 100$</option>
+                        <option value="above100">Above 100$</option>*@
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pages</label>
+                    <select class="form-select" asp-for="PageRange" asp-items="@Html.GetEnumSelectList<PageRange>()">
+                        <option>Any</option>
+                      @*  <option value="any">Any</option>
+                        <option value="0_100">Under 100</option>
+                        <option value="100_299">100 to 299</option>
+                        <option value="above300">Above 300</option>*@
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" asp-for="CategoryId" asp-items="@Model.Categories">
+                        <option selected>Any</option>
+                        @* <option value="any">Any</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Economics">Economics</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="History">History</option>*@
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-outline-light">Search</button>
+                    </div>
+                    <div class="col d-grid">
+                        <a class="btn btn-outline-light" href="" role="button">Clear</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table align-middle">
+            <tbody>
+                @foreach (BookViewModel book in Model.Books)
+                {
+                    <tr>
+                        <td style="width:200px">
+                            <img src="@book.ImageUrl" class="img-fluid rounded" alt="..." />
+                        </td>
+                        <td>
+                            <h3>@book.Title</h3>
+                            <p>
+                                Author: @book.Author<br>
+                                Category: @book.CategoryName<br>
+                                Pages: @book.NumOfPages
+                            </p>
+                            <h4>@(book.Price)$</h4>
+                            <a class="btn btn-primary btn-sm my-2" asp-action="Details"asp-route-id="@(book.Id)" role="button">Details</a>
+                            <button type="button" class="btn btn-warning btn-sm my-2" onclick="addToCart(this, @book.Id)">
+                                Add to Cart <i class="bi bi-cart4"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+     @*   <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.totalPages; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="?page=@(i)&Search=@(Model.Search)&PriceRange=@(Model.PriceRange)&PageRange=@(Model.PageRange)&Category=@(Model.Category)">@i</a></li>
+                }
+
+            </ul>
+        </nav>*@
+
+        <!--Pagination-->
+
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+ }">
+            <a class="page-link" asp-action="AdvancedSearch" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">Previous</a>
+        </li>
+                @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
+                {
+                    if (i > 0)
+                    {
+                        <li class="page-item"><a class="page-link" asp-action="AdvancedSearch" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">@i</a></li>
+                    }
+                }
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">
+                        @Model.CurrentPageNumber
+                    </span>
+                </li>
+                @for (int i = Model.CurrentPageNumber + 1; i <= Model.CurrentPageNumber + 3; i++)
+                {
+                    if (i <= Model.PagesCount)
+                    {
+                        <li class="page-item"><a class="page-link" asp-action="AdvancedSearch" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">@i</a></li>
+                    }
+                }
+                <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
+            <a class="page-link" asp-action="AdvancedSearch" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">Next</a>
+        </li>
+            </ul>
+        </nav>
+    </div>
+</div>

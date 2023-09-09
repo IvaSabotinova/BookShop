@@ -138,5 +138,18 @@
 
         public const string UserUpdatedSuccessfully = "Details updated successfully!";
 
+        // Enums
+        public const string UnderFifty = "Under 50$";
+
+        public const string FiftyToOneHundred = "50$ to 100$";
+
+        public const string AboveOneHundred = "Above 100$";
+
+        public const string UnderOneHundred = "Under 100";
+
+        public const string OneHundredToTwoHundredNinetyNine = "100 to 299";
+
+        public const string AboveThreeHundred = "Above 300";
+
     }
 }
