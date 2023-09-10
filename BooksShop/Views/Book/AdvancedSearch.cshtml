@@ -17,22 +17,14 @@
                 <div class="mb-3">
                     <label class="form-label">Price</label>
                     <select class="form-select" asp-for="PriceRange" asp-items="@Html.GetEnumSelectList<PriceRange>()">
-                        <option>Any</option>
-                  @*      <option value="any">Any</option>
-                        <option value="0_50">Under 50$</option>
-                        <option value="50_100">50$ to 100$</option>
-                        <option value="above100">Above 100$</option>*@
-                    </select>
+                        <option selected>Any</option>
+                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Pages</label>
                     <select class="form-select" asp-for="PageRange" asp-items="@Html.GetEnumSelectList<PageRange>()">
-                        <option>Any</option>
-                      @*  <option value="any">Any</option>
-                        <option value="0_100">Under 100</option>
-                        <option value="100_299">100 to 299</option>
-                        <option value="above300">Above 300</option>*@
+                        <option selected>Any</option>
                     </select>
                 </div>
 
@@ -40,12 +32,6 @@
                     <label class="form-label">Category</label>
                     <select class="form-select" asp-for="CategoryId" asp-items="@Model.Categories">
                         <option selected>Any</option>
-                        @* <option value="any">Any</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Economics">Economics</option>
-                        <option value="Medicine">Medicine</option>
-                        <option value="History">History</option>*@
                     </select>
                 </div>
 
@@ -54,13 +40,19 @@
                         <button type="submit" class="btn btn-outline-light">Search</button>
                     </div>
                     <div class="col d-grid">
-                        <a class="btn btn-outline-light" href="" role="button">Clear</a>
+                        <a class="btn btn-outline-light" asp-action="AdvancedSearch" role="button">Clear</a>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+    </div> 
+
     <div class="col-md-8">
+
+        @if (!Model.Books.Any())
+        {
+            <h3 class="text-center mt-7 mb-7">No Books Found!</h3>
+        }
         <table class="table align-middle">
             <tbody>
                 @foreach (BookViewModel book in Model.Books)
@@ -88,24 +80,11 @@
             </tbody>
         </table>
 
-
-     @*   <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                @for (int i = 1; i <= Model.totalPages; i++)
-                {
-                    <li class="page-item"><a class="page-link" href="?page=@(i)&Search=@(Model.Search)&PriceRange=@(Model.PriceRange)&PageRange=@(Model.PageRange)&Category=@(Model.Category)">@i</a></li>
-                }
-
-            </ul>
-        </nav>*@
-
         <!--Pagination-->
 
         <nav aria-label="...">
             <ul class="pagination justify-content-center">
-                <li class="page-item @if (!Model.HasPreviousPage) {
-        <text>disabled</text>
- }">
+                <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
             <a class="page-link" asp-action="AdvancedSearch" asp-route-page="@Model.PreviousPageNumber" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">Previous</a>
         </li>
                 @for (int i = Model.CurrentPageNumber - 3; i < Model.CurrentPageNumber; i++)
@@ -127,9 +106,7 @@
                         <li class="page-item"><a class="page-link" asp-action="AdvancedSearch" asp-route-page="@i" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">@i</a></li>
                     }
                 }
-                <li class="page-item @if (!Model.HasNextPage) {
-        <text>disabled</text>
- }">
+                <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
             <a class="page-link" asp-action="AdvancedSearch" asp-route-page="@Model.NextPageNumber" asp-route-search="@Model.Search" asp-route-priceRange="@Model.PriceRange" asp-route-pageRange="@Model.PageRange" asp-route-categoryId="@Model.CategoryId">Next</a>
         </li>
             </ul>

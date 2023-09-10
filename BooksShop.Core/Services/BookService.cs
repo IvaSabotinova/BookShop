@@ -5,6 +5,7 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using BooksShop.Core.ViewModels.Books;
+    using BooksShop.Core.ViewModels.Books.Enums;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc.Rendering;
@@ -216,5 +217,112 @@
                 .Where(x => x.Id == id)
                 .ProjectTo<BookDetailsViewModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
+
+        public async Task<int> AdvancedSearchBooksCount(
+            string? search,
+            PriceRange? priceRange,
+            PageRange? pageRange,
+            int? categoryId)
+        {
+            IQueryable<Book> books = this.booksRepo.AllAsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                search = $"%{search.Trim().ToLower()}%";
+                books = books.Where(x => EF.Functions.Like(x.Title.ToLower(), search)
+                || EF.Functions.Like(x.Author.ToLower(), search));
+            }
+
+            if (priceRange != null)
+            {
+                books = priceRange switch
+                {
+                    PriceRange.UnderFifty => books.Where(x => x.Price < 50),
+                    PriceRange.FiftyToOneHundred => books.Where(x => x.Price >= 50 && x.Price <= 100),
+                    _=> books.Where(x => x.Price > 100),
+                };
+            }
+
+            if (pageRange != null)
+            {
+                books = pageRange switch
+                {
+                    PageRange.UnderOneHundred => books.Where(x => x.NumOfPages < 100),
+                    PageRange.OneHundredToTwoHundredNinetyNine => books.Where(x => x.NumOfPages >= 100 && x.NumOfPages <= 299),
+                    PageRange.AboveThreeHundred => books.Where(x => x.NumOfPages >= 300),
+                };
+            }
+
+            if (categoryId != 0)
+            {
+                books = books.Where(x => x.CategoryId == categoryId);
+            }
+
+            return await books.CountAsync();
+        }
+
+        public async Task<BookAdvancedSearchAndPagingViewModel> AdvancedSearch(
+            int page,
+            int itemsPerPage,
+            string? search,
+            PriceRange? priceRange,
+            PageRange? pageRange,
+            int? categoryId)
+        {
+            IQueryable<Book> booksQuery = this.booksRepo.AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                string searchQuery = $"%{search.Trim().ToLower()}%";
+                booksQuery = booksQuery.Where(x => EF.Functions.Like(x.Title.ToLower(), searchQuery)
+                || EF.Functions.Like(x.Author.ToLower(), searchQuery));
+            }
+
+            if (priceRange != null)
+            {
+                booksQuery = priceRange switch
+                {
+                    PriceRange.UnderFifty => booksQuery.Where(x => x.Price < 50),
+                    PriceRange.FiftyToOneHundred => booksQuery.Where(x => x.Price >= 50 && x.Price <= 100),
+                    _ => booksQuery.Where(x => x.Price > 100),
+                };
+            }
+
+            if (pageRange != null)
+            {
+                booksQuery = pageRange switch
+                {
+                    PageRange.UnderOneHundred => booksQuery.Where(x => x.NumOfPages < 100),
+                    PageRange.OneHundredToTwoHundredNinetyNine => booksQuery.Where(x => x.NumOfPages >= 100 && x.NumOfPages <= 299),
+                    _ => booksQuery.Where(x => x.NumOfPages >= 300),
+                };
+            }
+
+            if (categoryId != 0)
+            {
+                booksQuery = booksQuery.Where(x => x.CategoryId == categoryId);
+            }
+
+            List<BookViewModel> books = await booksQuery
+                .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
+
+            return new BookAdvancedSearchAndPagingViewModel()
+            {
+                CurrentPageNumber = page,
+                ItemsPerPage = itemsPerPage,
+                AllItemsCount = await this.AdvancedSearchBooksCount(search, priceRange, pageRange, categoryId),
+                Books = books,
+                Search = search,
+                PriceRange = priceRange,
+                PageRange = pageRange,
+                CategoryId = categoryId,
+                Categories = await this.GetAllCategories(),
+            };
+        }
     }
 }

@@ -13,7 +13,7 @@
 
         public PageRange? PageRange { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
     }

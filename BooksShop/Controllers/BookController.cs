@@ -2,6 +2,7 @@
 {
     using BooksShop.Core.Services;
     using BooksShop.Core.ViewModels.Books;
+    using BooksShop.Core.ViewModels.Books.Enums;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc;
 
@@ -48,12 +49,21 @@
 
         [HttpGet]
 
-        public async Task<IActionResult> AdvancedSearch()
+        public async Task<IActionResult> AdvancedSearch(
+            int page = 1,
+            int itemsPerPage = 5,
+            string? search = null,
+            PriceRange? priceRange = null,
+            PageRange? pageRange = null,
+            int? categoryId = 0)
         {
-            BookAdvancedSearchAndPagingViewModel model = new BookAdvancedSearchAndPagingViewModel()
+            if (page <= 0)
             {
-                Categories = await this.bookService.GetAllCategories(),
-            };
+                return this.NotFound();
+            }
+
+            BookAdvancedSearchAndPagingViewModel model = await this.bookService
+                .AdvancedSearch(page, itemsPerPage, search, priceRange, pageRange, categoryId);
 
             return this.View(model);
         }

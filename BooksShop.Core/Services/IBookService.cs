@@ -1,6 +1,7 @@
 ﻿namespace BooksShop.Core.Services
 {
     using BooksShop.Core.ViewModels.Books;
+    using BooksShop.Core.ViewModels.Books.Enums;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -30,5 +31,19 @@
         Task<IEnumerable<BookViewModel>> GetFourNewestBooks();
 
         Task<BookDetailsViewModel> GetDetailsById(int id);
+
+        Task<int> AdvancedSearchBooksCount(
+            string? search,
+            PriceRange? priceRange,
+            PageRange? pageRange,
+            int? categoryId);
+
+        Task<BookAdvancedSearchAndPagingViewModel> AdvancedSearch(
+            int page,
+            int itemsPerPage,
+            string? search,
+            PriceRange? priceRange,
+            PageRange? pageRange,
+            int? categoryId);
     }
 }
