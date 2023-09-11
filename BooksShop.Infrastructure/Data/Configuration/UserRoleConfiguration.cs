@@ -1,6 +1,5 @@
 ﻿namespace BooksShop.Infrastructure.Data.Configuration
 {
-    using System;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;

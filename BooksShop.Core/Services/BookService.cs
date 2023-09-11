@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Core.ViewModels.Books.Enums;
     using BooksShop.Infrastructure.Common;

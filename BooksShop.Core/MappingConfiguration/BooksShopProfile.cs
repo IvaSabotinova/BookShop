@@ -3,6 +3,7 @@
     using AutoMapper;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Core.ViewModels.Messages;
+    using BooksShop.Core.ViewModels.ShoppingCart;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
 
@@ -28,6 +29,9 @@
             this.CreateMap<BookEditModel, Book>();
             this.CreateMap<Book, BookViewModel>();
             this.CreateMap<Book, BookDetailsViewModel>();
+            this.CreateMap<Book, BookOrderViewModel>()
+                .ForMember(x => x.Quantity, src => src.Ignore())
+                .ForMember(x => x.TotalPrice, src => src.Ignore());
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()

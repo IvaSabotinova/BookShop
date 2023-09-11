@@ -9,6 +9,7 @@
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Orders = new HashSet<Order>();
         }
 
         [MaxLength(FirstNameMaxLength)]
@@ -21,5 +22,7 @@
         public string Address { get; set; }
 
         public DateTime RegisteredOn { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

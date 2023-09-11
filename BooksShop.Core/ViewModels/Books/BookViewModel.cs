@@ -1,19 +1,9 @@
 ﻿namespace BooksShop.Core.ViewModels.Books
 {
-    public class BookViewModel
+    using BooksShop.Core.ViewModels.ShoppingCart;
+
+    public class BookViewModel : BookBaseViewModel
     {
-        public int Id { get; set; }
-
-        public string Title { get; set; }
-
-        public string Author { get; set; }
-
         public int NumOfPages { get; set; }
-
-        public decimal Price { get; set; }
-
-        public string CategoryName { get; set; }
-
-        public string ImageUrl { get; set; }
     }
 }

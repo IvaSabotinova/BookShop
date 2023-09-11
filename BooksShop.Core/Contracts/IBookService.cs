@@ -1,4 +1,4 @@
-﻿namespace BooksShop.Core.Services
+﻿namespace BooksShop.Core.Contracts
 {
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Core.ViewModels.Books.Enums;

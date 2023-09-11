@@ -1,6 +1,6 @@
 ﻿namespace BooksShop.Controllers
 {
-    using BooksShop.Core.Services;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;

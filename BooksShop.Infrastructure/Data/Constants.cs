@@ -151,5 +151,7 @@
 
         public const string AboveThreeHundred = "Above 300";
 
+        public const string BookNotAvailable = "The book is currently not available";
+
     }
 }

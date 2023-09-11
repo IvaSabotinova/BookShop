@@ -1,7 +1,7 @@
 ﻿namespace BooksShop.Controllers
 {
     using System.Diagnostics;
-    using BooksShop.Core.Services;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels;
     using BooksShop.Core.ViewModels.Books;
     using Microsoft.AspNetCore.Mvc;

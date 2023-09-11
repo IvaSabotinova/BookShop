@@ -7,6 +7,11 @@
 
     public class Book
     {
+        public Book()
+        {
+            this.BooksOrders = new HashSet<BookOrder>();
+        }
+
         public int Id { get; set; }
 
         [MaxLength(TitleMaxLength)]
@@ -26,7 +31,7 @@
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [MaxLength(DescriptionMaxLength)]
         public string? Description { get; set; } = null;
@@ -34,5 +39,7 @@
         public string ImageUrl { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public virtual ICollection<BookOrder> BooksOrders { get; set; }
     }
 }

@@ -19,6 +19,10 @@
 
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<BookOrder> BooksOrders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CategoryConfiguration());
@@ -26,6 +30,8 @@
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.Entity<BookOrder>()
+                .HasKey(x => new { x.BookId, x.OrderId });
             base.OnModelCreating(builder);
         }
     }

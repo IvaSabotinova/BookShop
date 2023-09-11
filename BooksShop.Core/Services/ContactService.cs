@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels.Messages;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;

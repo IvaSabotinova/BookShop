@@ -1,6 +1,6 @@
 ﻿namespace BooksShop.Areas.Administration.Controllers
 {
-    using BooksShop.Core.Services;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Identity;

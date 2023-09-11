@@ -1,6 +1,6 @@
 ﻿namespace BooksShop.Areas.Administration.Controllers
 {
-    using BooksShop.Core.Services;
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc;
@@ -17,6 +17,24 @@
         {
             this.bookService = bookService;
             this.webHostEnvironment = webHostEnvironment;
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> All(
+              int page = 1,
+              int itemsPerPage = 3,
+              string? search = null,
+              string? column = null,
+              string? order = null)
+        {
+            if (page <= 0)
+            {
+                return this.NotFound();
+            }
+
+            BooksListViewModel model = await this.bookService.GetAll(page, itemsPerPage, search, column, order);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -43,7 +61,7 @@
             {
                 await this.bookService.CreateBookAsync(model, this.webHostEnvironment.WebRootPath);
                 this.TempData[Constants.Message] = BookCreated;
-                return this.RedirectToAction("All", "Book", new { area = string.Empty });
+                return this.RedirectToAction(nameof(this.All));
             }
             catch (Exception ex)
             {
@@ -83,7 +101,7 @@
             {
                 await this.bookService.EditBookAsync(model, this.webHostEnvironment.WebRootPath);
                 this.TempData[Constants.Message] = BookEdited;
-                return this.RedirectToAction("All", "Book", new { area = string.Empty });
+                return this.RedirectToAction(nameof(this.All));
             }
             catch (Exception ex)
             {
@@ -97,7 +115,7 @@
         public async Task<IActionResult> Delete(int id)
         {
             await this.bookService.DeleteBookAsync(id, this.webHostEnvironment.WebRootPath);
-            return this.RedirectToAction("All", "Book", new { area = string.Empty });
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BooksShop.Core.Services
+﻿namespace BooksShop.Core.Contracts
 {
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;

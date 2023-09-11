@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BookOrderViewModel>
+
+
+<div class="row border rounded-3">
+    <div class="col-md-8 p-3">
+        <h4>Shopping Cart</h4>
+
+        <table class="table align-middle">
+            <tr>
+                <td style="width:100px"></td>
+                <td></td>
+                <td style="width:140px"></td>
+                <td style="width:70px"></td>
+                <td style="width:30px"></td>
+            </tr>
+            @foreach (BookOrderViewModel book in Model)
+            {
+                <tr>
+                    <td><img src="@book.ImageUrl" width="100" class="rounded" alt="..." /></td>
+                    <td>
+                        <h4>@book.Title</h4>
+                        <p>
+                            Author: @book.Author<br>
+                            Category: @book.CategoryName<br>
+                            Price: @(book.Price)$
+                        </p>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-secondary btn-sm" role="button">-</a>
+                        <span class="border rounded-3 p-2 m-1">@book.Quantity</span>
+                        <a class="btn btn-outline-secondary btn-sm" role="button">+</a>
+                    </td>
+                    <td>@(book.TotalPrice)$</td>
+                    <td>
+                        <a href=""><i class="bi bi-trash text-danger h4"></i></a>
+                    </td>
+                </tr>
+            }
+         
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="text-white rounded my-2 p-3" style="background-color: #08618d;">
+            <h4>Order Summary</h4>
+            <hr>
+        </div>
+    </div>
+</div>

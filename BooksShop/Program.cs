@@ -4,6 +4,7 @@
 
 namespace BooksShop
 {
+    using BooksShop.Core.Contracts;
     using BooksShop.Core.Services;
     using BooksShop.Data;
     using BooksShop.Infrastructure.Common;
@@ -38,6 +39,7 @@ namespace BooksShop
             builder.Services.AddScoped<IContactService, ContactService>();
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

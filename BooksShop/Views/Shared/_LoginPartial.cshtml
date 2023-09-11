@@ -14,7 +14,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-area="Administration" asp-controller="Contact" asp-action="All">Messages</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Book" asp-action="All">Books</a></li>
+                    <li><a class="dropdown-item" asp-area="Administration" asp-controller="Book" asp-action="All">Books</a></li>
                     <li><a class="dropdown-item" asp-area="Administration" asp-controller="User" asp-action="All">Users</a></li>
                     <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile" asp-route-id="@(this.UserManager.GetUserId(this.User))">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -33,9 +33,8 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Client
                 </a>
-                <ul class="dropdown-menu">                  
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Book" asp-action="All">Books</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile" asp-route-id="@(this.UserManager.GetUserId(this.User))">Profile</a></li>
+                <ul class="dropdown-menu">                 
+                       <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile" asp-route-id="@(this.UserManager.GetUserId(this.User))">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                   @*  <li><a class="dropdown-item" href="#">To Do</a></li>*@
                     <li class="dropdown-item">
