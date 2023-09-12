@@ -35,8 +35,7 @@
                 </a>
                 <ul class="dropdown-menu">                 
                        <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile" asp-route-id="@(this.UserManager.GetUserId(this.User))">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                  @*  <li><a class="dropdown-item" href="#">To Do</a></li>*@
+                    <li><hr class="dropdown-divider"></li>                
                     <li class="dropdown-item">
                         <form class="form-inline" asp-area="" asp-controller="User" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                             <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>

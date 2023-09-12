@@ -4,8 +4,6 @@
 
     public interface IShoppingCartService
     {
-        Task<Dictionary<int, int>> GetCookieInfoAsync(string? cookieValue);
-
-        Task<IEnumerable<BookOrderViewModel>> ShoppingCartInfo(Dictionary<int, int> cookieValues);
+        Task<OrderViewModel> ShoppingCartInfo(string cookieValue, string? action, int bookId);
     }
 }

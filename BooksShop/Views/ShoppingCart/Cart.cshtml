@@ -1,5 +1,4 @@
-﻿@model IEnumerable<BookOrderViewModel>
-
+﻿@model OrderViewModel
 
 <div class="row border rounded-3">
     <div class="col-md-8 p-3">
@@ -13,9 +12,14 @@
                 <td style="width:70px"></td>
                 <td style="width:30px"></td>
             </tr>
-            @foreach (BookOrderViewModel book in Model)
+            @if (!Model.OrderedBooks.Any())
             {
-                <tr>
+                <tr class="text-center h3 mt-7 mb-7">Shopping Cart Is Empty!</tr>
+            }
+         
+            @foreach (BookOrderViewModel book in Model.OrderedBooks)
+            {
+                <tr>                 
                     <td><img src="@book.ImageUrl" width="100" class="rounded" alt="..." /></td>
                     <td>
                         <h4>@book.Title</h4>
@@ -26,13 +30,13 @@
                         </p>
                     </td>
                     <td>
-                        <a class="btn btn-outline-secondary btn-sm" role="button">-</a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-controller="ShoppingCart" asp-action="Cart" asp-route-act="subtract" asp-route-bookId="@book.Id" role="button">-</a>
                         <span class="border rounded-3 p-2 m-1">@book.Quantity</span>
-                        <a class="btn btn-outline-secondary btn-sm" role="button">+</a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-controller="ShoppingCart" asp-action="Cart" asp-route-act="add" asp-route-bookId="@book.Id" role="button">+</a>
                     </td>
                     <td>@(book.TotalPrice)$</td>
                     <td>
-                        <a href=""><i class="bi bi-trash text-danger h4"></i></a>
+                        <a asp-controller="ShoppingCart" asp-action="Cart" asp-route-act="delete" asp-route-bookId="@book.Id"><i class="bi bi-trash text-danger h4"></i></a>
                     </td>
                 </tr>
             }

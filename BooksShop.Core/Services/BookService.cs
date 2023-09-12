@@ -250,7 +250,7 @@
                 {
                     PageRange.UnderOneHundred => books.Where(x => x.NumOfPages < 100),
                     PageRange.OneHundredToTwoHundredNinetyNine => books.Where(x => x.NumOfPages >= 100 && x.NumOfPages <= 299),
-                    PageRange.AboveThreeHundred => books.Where(x => x.NumOfPages >= 300),
+                    _ => books.Where(x => x.NumOfPages >= 300),
                 };
             }
 
