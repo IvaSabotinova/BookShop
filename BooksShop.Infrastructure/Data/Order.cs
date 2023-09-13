@@ -27,7 +27,7 @@
         [MaxLength(AddressMaxLength)]
         public string DeliveryAddress { get; set; }
 
-        public string PaymentMethod { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
 

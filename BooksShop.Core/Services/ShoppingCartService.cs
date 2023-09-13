@@ -6,6 +6,7 @@
     using BooksShop.Core.ViewModels.ShoppingCart;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
+    using BooksShop.Infrastructure.Data.Enums;
     using Microsoft.EntityFrameworkCore;
 
     public class ShoppingCartService : IShoppingCartService
@@ -43,7 +44,12 @@
            return bookDictionary;
         }
 
-        public async Task<OrderViewModel> ShoppingCartInfo(string cookieValue, string? action, int bookId)
+        public async Task<OrderModel> ShoppingCartInfo(
+            string cookieValue,
+            string? action,
+            int bookId,
+            string? deliveryAddress,
+            PaymentMethod? paymentMethod)
         {
             Dictionary<int, int> bookDictionary = this.GetCookieInfo(cookieValue);
 
@@ -85,6 +91,7 @@
             }
 
             List<BookOrderViewModel> shoppingCartBooks = new List<BookOrderViewModel>();
+            decimal subTotal = 0;
             foreach (KeyValuePair<int, int> book in bookDictionary)
             {
                 BookOrderViewModel model = await this.booksRepo.AllAsNoTracking()
@@ -93,14 +100,23 @@
                     .FirstAsync();
 
                 model.Quantity = book.Value;
+                subTotal += model.TotalPrice;
                 shoppingCartBooks.Add(model);
             }
 
-            return new OrderViewModel()
+            return new OrderModel()
             {
                 OrderedBooks = shoppingCartBooks,
                 CookieValue = cookieValue,
+                Subtotal = subTotal,
+                DeliveryAddress = deliveryAddress,
+                PaymentMethod = paymentMethod,
             };
+        }
+
+        public Task CreateOrder(OrderModel model, string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

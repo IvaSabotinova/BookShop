@@ -28,6 +28,8 @@
             this.CreateMap<Book, BookEditModel>();
             this.CreateMap<BookEditModel, Book>();
             this.CreateMap<Book, BookViewModel>();
+
+            // Shopping Cart
             this.CreateMap<Book, BookDetailsViewModel>();
             this.CreateMap<Book, BookOrderViewModel>()
                 .ForMember(x => x.Quantity, src => src.Ignore())

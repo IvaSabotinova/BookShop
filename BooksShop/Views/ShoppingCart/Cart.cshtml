@@ -1,8 +1,16 @@
-﻿@model OrderViewModel
+﻿@model OrderModel
 
 <div class="row border rounded-3">
     <div class="col-md-8 p-3">
         <h4>Shopping Cart</h4>
+
+        @if (!Model.OrderedBooks.Any())
+        {
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>@ShoppingCartEmpty</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>       
+        }
 
         <table class="table align-middle">
             <tr>
@@ -11,15 +19,11 @@
                 <td style="width:140px"></td>
                 <td style="width:70px"></td>
                 <td style="width:30px"></td>
-            </tr>
-            @if (!Model.OrderedBooks.Any())
-            {
-                <tr class="text-center h3 mt-7 mb-7">Shopping Cart Is Empty!</tr>
-            }
-         
+            </tr>         
+
             @foreach (BookOrderViewModel book in Model.OrderedBooks)
             {
-                <tr>                 
+                <tr>
                     <td><img src="@book.ImageUrl" width="100" class="rounded" alt="..." /></td>
                     <td>
                         <h4>@book.Title</h4>
@@ -40,13 +44,83 @@
                     </td>
                 </tr>
             }
-         
+
         </table>
     </div>
     <div class="col-md-4">
         <div class="text-white rounded my-2 p-3" style="background-color: #08618d;">
             <h4>Order Summary</h4>
             <hr>
+            @if (!this.User.IsInRole(AdministratorRoleName) && !this.User.IsInRole(ClientRoleName))
+            {
+                <div class="row">
+                    <div class="col">
+                        <p>Subtotal:</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-end">@(Model.Subtotal)$</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col d-grid">
+                        <a class="btn btn-light" asp-controller="User" asp-action="Register" role="button">Register</a>
+                    </div>
+                    <div class="col d-grid">
+                        <a class="btn btn-outline-light" asp-controller="User" asp-action="Login" role="button">Login</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Delivery Address</label>
+                        <input type="text" class="form-control" asp-for="DeliveryAddress">
+                        <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Payment Method</label>
+                        <select class="form-select" asp-for="PaymentMethod" asp-items="@Html.GetEnumSelectList<PaymentMethod>()">
+                            <option selected>Please choose...</option>
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Subtotal:</p>
+                        </div>
+                        <div class="col">
+                            <p class="text-end">@(Model.Subtotal)$</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Shipping:</p>
+                        </div>
+                        <div class="col">
+                            <p class="text-end">@(Model.ShippingFee)$</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <p>Total:</p>
+                        </div>
+                        <div class="col">
+                            <p class="text-end">@(Model.Total)$</p>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-outline-light" type="submit">Checkout</button>
+                    </div>
+                </form>
+            }
         </div>
     </div>
 </div>

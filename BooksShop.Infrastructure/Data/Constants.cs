@@ -155,5 +155,11 @@
 
         public const string Shopping_Cart = "shopping_cart";
 
+        // payment methods
+        public const string CashOnDelivery = "Cash on Delivery";
+
+        public const string CreditCard = "Credit Card";
+
+        public const string ShoppingCartEmpty = "Your cart is empty!";
     }
 }
