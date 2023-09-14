@@ -13,4 +13,4 @@ All above action are facilitated by adding pagination, searching and sorting fun
 
 ## Database Diagram
 
-![Database_Diagram](https://github.com/IvaSabotinova/BookShop/assets/96121572/2ab457af-3622-4639-ae25-e7eb56e41f37)
+![Database_Diagram](https://github.com/IvaSabotinova/BookShop/assets/96121572/9b59a8d2-40fb-4cab-9e43-bc421d8c5fd0)
