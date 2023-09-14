@@ -18,7 +18,7 @@ namespace BooksShop.Data.Migrations
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippingFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DeliveryAddress = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     PaymentStatus = table.Column<int>(type: "int", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
                 },
@@ -40,6 +40,7 @@ namespace BooksShop.Data.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -63,406 +64,406 @@ namespace BooksShop.Data.Migrations
                 keyColumn: "Id",
                 keyValue: "038e5319-0910-4cba-bf80-253a10030324",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "e4eefa68-55a6-4412-8ad6-b1a5da683d4e", "AQAAAAEAACcQAAAAECbGL+JbvRzocNYegAMDqfy+AZq2p0Phbv0VP1SzG+xjSiy3U+2KZOznWps6Yb/Sew==", new DateTime(2023, 9, 11, 0, 26, 34, 961, DateTimeKind.Local).AddTicks(7165), "6dd5d605-9c8c-498e-b72b-b304999e01c1" });
+                values: new object[] { "ef9d00c4-b810-471e-91c9-999ecd359654", "AQAAAAEAACcQAAAAEA2kpUU4O/Ij/Q0JUbsf2dDEX0QN8vQduQXbJ+BVzF1IHNf8H5FZKb4FDp7P0KEIIw==", new DateTime(2023, 9, 14, 2, 59, 16, 348, DateTimeKind.Local).AddTicks(9972), "797ae408-eb14-4378-a907-87d41326ff63" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "0908214c-eac6-4029-b303-8d987037c4ad",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "434cc680-dbcb-4d64-9cee-8fa7cc9ff055", "AQAAAAEAACcQAAAAEJJeV0EnYzHjemTRxmQp4/XDSKvpajmctYbc0mkelAQBg9tB6D6Gml0sK+mmXvfkJg==", new DateTime(2023, 9, 11, 0, 26, 34, 937, DateTimeKind.Local).AddTicks(3035), "1cd49ff7-eea6-4ee4-8e3f-19c586dbc290" });
+                values: new object[] { "166e51dc-37fe-4000-95f5-4532adf592e6", "AQAAAAEAACcQAAAAEE73+bNUM9GfQB9PuJIBtUN5/LvP7J2SS6r8/iSvR3K6Zo+9rSp/4Bo8NvVbPvBjRw==", new DateTime(2023, 9, 14, 2, 59, 16, 324, DateTimeKind.Local).AddTicks(6748), "3b30016e-314e-4149-894f-39fddaa3f641" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "0e6103a7-8dae-4d2e-b438-74fe02768f4f",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "db7ed91e-b39b-4a25-a68c-837181d9bb31", "AQAAAAEAACcQAAAAEDD5J6gZOf/SkUnN+/1C4IJsizi3Fo0BRGsBBebOeY4nVYN0oKMRn3V7kQCHsU1sSQ==", new DateTime(2023, 9, 11, 0, 26, 34, 948, DateTimeKind.Local).AddTicks(3377), "47da6c03-3892-48a9-b023-07180b0cca48" });
+                values: new object[] { "a45b920e-439d-44f0-9d7b-949f1ede7628", "AQAAAAEAACcQAAAAEH3YZ30s7dKqI3h9kxVmPhWss6K71vM87saHqOnIoYlm2ivwUAP57E42bzkRLq5iTA==", new DateTime(2023, 9, 14, 2, 59, 16, 335, DateTimeKind.Local).AddTicks(6942), "e782a373-feeb-4e8a-b66c-139a2caf81fe" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "109044cd-44fb-470c-b7b9-2724987b08de",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "4cd2a346-4725-4ce5-96b9-e4b7032ebacf", "AQAAAAEAACcQAAAAEAemHd/bHetFwly5otPwmdyidk3Dna57BIwnRe0408LJbR+y3OJMqrdH3sYpgahT1g==", new DateTime(2023, 9, 11, 0, 26, 34, 950, DateTimeKind.Local).AddTicks(5566), "e3122bf0-7553-4820-b03f-9af79c93d2e5" });
+                values: new object[] { "60613457-0762-4889-a3d8-bf5f2f077f02", "AQAAAAEAACcQAAAAEH/KbSFxz1k89X6OzQi8SO8F9ecm7TsW/3Icb6uIKDBRH0wHprIzEef88iYUXU4Bmw==", new DateTime(2023, 9, 14, 2, 59, 16, 337, DateTimeKind.Local).AddTicks(9022), "a7fb8f90-6595-4dcf-8eb1-76610c1bf800" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "1c1a75f2-63d1-4aaf-b026-b9e13ebb62ca",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "1626ed59-c7f6-4d3e-a241-7ca5fd928605", "AQAAAAEAACcQAAAAEK5/RwlbEsC8rSpht4rYhCNfYE5Vwg/3U6LZKNdxTAZGao9qv4VWlWVcQr+LNqRFLg==", new DateTime(2023, 9, 11, 0, 26, 34, 953, DateTimeKind.Local).AddTicks(8931), "2db2bec0-6c10-485c-ab89-d51623aacb2b" });
+                values: new object[] { "7c5f0c0d-1518-4615-bb5c-32b513699680", "AQAAAAEAACcQAAAAEAGOZtStuCItS+ztrqZxGetqFEGImDqAAdI203d9q27VTLutBnU1kczTfA29Wk2WUw==", new DateTime(2023, 9, 14, 2, 59, 16, 341, DateTimeKind.Local).AddTicks(2201), "a7fe67ab-6543-40aa-9d52-e7cfff1b1335" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "1de2f067-3236-4b27-9fba-8b5d49db06ae",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "b86b114b-8229-454a-b87b-84b8150d2601", "AQAAAAEAACcQAAAAEMdfrEmelXmVrouRQO+uMMLLnIkUUpqGz842gPoOSSldDRXpJD5YLaCAF+rIJiutoQ==", new DateTime(2023, 9, 11, 0, 26, 34, 963, DateTimeKind.Local).AddTicks(9300), "3df16aa7-d5c5-45b7-a387-a47f27fabc22" });
+                values: new object[] { "1ca2ad65-746a-456d-8315-60b2b3cdc9c3", "AQAAAAEAACcQAAAAEGT/s1zZ0dQrSvDvFXdheO4XDULHs74Uve1/Y/OEsaO41wh/fTmvECgnRcwsvaBIPg==", new DateTime(2023, 9, 14, 2, 59, 16, 351, DateTimeKind.Local).AddTicks(2037), "150810fc-19ee-42cd-ad00-4205d0f768bb" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "22657eba-f41a-4bb3-986e-83ef23fedf15",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "9417d5eb-9644-4b9e-96b0-2ac530f8f511", "AQAAAAEAACcQAAAAEFg6e2YcNFY3HnCxOK0rDTwwabTyv/szePCnGGwkEaVHx0F7Tk7ZNEAGcif2nmeFiw==", new DateTime(2023, 9, 11, 0, 26, 34, 960, DateTimeKind.Local).AddTicks(5629), "f820be38-f061-49ff-b605-73315572883b" });
+                values: new object[] { "2e35bf0b-2131-46af-93f7-49073fdef6d2", "AQAAAAEAACcQAAAAEENaljiAUWFMivTC4ebhnnELCIFgy9DN3HnkG6KSPGB6OWrgD3Rpm26Xo5OKG4FEmQ==", new DateTime(2023, 9, 14, 2, 59, 16, 347, DateTimeKind.Local).AddTicks(8923), "711b7b91-87b0-492b-9c7b-08a2a07dd5bd" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "2708e501-67b2-4c5b-aacd-9a044df9de21",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "6fd63e31-5a5d-484d-a9b2-1bc737ca8230", "AQAAAAEAACcQAAAAENJZDs/yFjOnUnGoW3bYYyosJQgNRsNGNH6nedldW75kKdZHeYhP2DO9Id5cMECEow==", new DateTime(2023, 9, 11, 0, 26, 34, 942, DateTimeKind.Local).AddTicks(8703), "551c2807-8c4e-4c98-9cd8-6855fe93838a" });
+                values: new object[] { "c6ac6d94-bc67-4c75-9eb4-a039599d1abf", "AQAAAAEAACcQAAAAEDboZHHFvG32SN5ihhXYSIyEuOFItRwuh5gT7xk/ATT/jiiYz7dcCF5P3aThUq4LjA==", new DateTime(2023, 9, 14, 2, 59, 16, 330, DateTimeKind.Local).AddTicks(2036), "18f31958-38fd-432a-afe4-9490ca48c686" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "283073f1-cc28-485a-ab58-44f4ed128264",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "ee37eddc-82bd-4884-8e59-9c204a1edd91", "AQAAAAEAACcQAAAAENaHxXynzcpdyMjRitByvSHci5xqZvXXl5gCst0EpVj8F9OqsTBxybnx8flNBTwf4A==", new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6490), "11384ff6-3586-4535-bf38-01871e515a4f" });
+                values: new object[] { "619c41ed-c255-4ffc-b286-c042562b2f50", "AQAAAAEAACcQAAAAEE9egjJittez4R3SzPuLuD+vkxBDqBh5GnFa6M7szfuOuASpxI5iYSfKL4WmwxcWAg==", new DateTime(2023, 9, 14, 2, 59, 16, 318, DateTimeKind.Local).AddTicks(318), "72e51687-ef58-40ab-abac-9998c36d14b3" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "2b760fe4-01b3-4794-9d1a-a63002dc3ccd",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "db30fa5f-ee10-469c-b929-9045fd77d781", "AQAAAAEAACcQAAAAEIPC/ByaeHbxGWLly2ei2JRxnkTnYXfE1UeWzQn4KjZDQVPfpPG0xkA9kfGFobjviw==", new DateTime(2023, 9, 11, 0, 26, 34, 943, DateTimeKind.Local).AddTicks(9657), "effe33fa-0bbf-43b2-8793-80e6f272c134" });
+                values: new object[] { "78a205c4-bd97-4455-a6a4-2fd2cf08ade1", "AQAAAAEAACcQAAAAEJb0LEteB2unbbn8GwRSLoq3erWH7DNdn0pccxKSf7UVC8JaTEqxYCSNufGB8hzPmg==", new DateTime(2023, 9, 14, 2, 59, 16, 331, DateTimeKind.Local).AddTicks(3079), "1614d5e5-3063-45f3-9ebc-63c6bebd08db" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "2c2467dc-c396-46ce-af79-da3e48398f4a",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "9c61906f-955e-4693-9025-a5b2f1673ec0", "AQAAAAEAACcQAAAAEMMM6fiRCyohAuUSI2GJZWNrPNiRSflqw1NR2iB+qDz7bVAofW+lFJBGAckrxly1vw==", new DateTime(2023, 9, 11, 0, 26, 34, 940, DateTimeKind.Local).AddTicks(6233), "2f44413b-b639-498f-8289-2169c69440a6" });
+                values: new object[] { "2bae8a4c-547d-4b1a-ade4-7663eb9aaa16", "AQAAAAEAACcQAAAAEKDVF8noN976+csouqglYccCRbkPFMyec1Qy2ax487MH5i8vsej/9i8j3+2W+Ocwdw==", new DateTime(2023, 9, 14, 2, 59, 16, 327, DateTimeKind.Local).AddTicks(9775), "361019b8-cf0c-4f5a-994d-a3547ee5eeb1" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "33008499-b5d6-4dc4-8b90-81eb4c5da11e",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "5592e54f-b6ec-4693-92dc-a846b502c429", "AQAAAAEAACcQAAAAEPmFQox5z2FEeVbrL8HvpZrPhYskUsy/TUboNCIow3mW1SY1w7Zeid63Z41qfRuAiw==", new DateTime(2023, 9, 11, 0, 26, 34, 956, DateTimeKind.Local).AddTicks(1232), "3cd0782f-e643-4d21-a606-20e64edd02ae" });
+                values: new object[] { "b3ec00aa-0ae2-4f1c-a4bd-873425f69e48", "AQAAAAEAACcQAAAAECAL426oeFse9414bhbQx+KFoFjkbDAN5Swr6FOvqs9eZPXtDYEpvXwkOdfAIh8X/w==", new DateTime(2023, 9, 14, 2, 59, 16, 343, DateTimeKind.Local).AddTicks(4369), "82b82156-ed13-4102-aded-9cbef359d269" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "45538c3e-df96-4b79-86dc-e190def35cf4",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "5e1163cd-f113-44b1-84e5-5e765b052f17", "AQAAAAEAACcQAAAAEMLGg01vR21w7mpteYmP1pDOvOBO2eruUaoVx7Z3VHmlSvtDd/VSC3w4l6G1zo0ULA==", new DateTime(2023, 9, 11, 0, 26, 34, 932, DateTimeKind.Local).AddTicks(9157), "73e0b6a3-c391-4633-8875-b8cae17ad239" });
+                values: new object[] { "55137f16-39e7-4c04-bac7-6c9d7ea5dad5", "AQAAAAEAACcQAAAAEKxBxvxOTBqCtjNTJKyLzRzb9REvXwYamBno40TZDO9ugR3v5Ne7eBuA6AKkPaKnyA==", new DateTime(2023, 9, 14, 2, 59, 16, 320, DateTimeKind.Local).AddTicks(2519), "aecc6eb4-d3f1-44c5-9e0b-5c13784eb167" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "77eb1836-14d0-414d-85ad-3413afd9e2d9",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "d30fffb0-f8ff-420e-b42a-a9ed7ec9242f", "AQAAAAEAACcQAAAAECy0OGfuDdhFzFT4bJxBZS4pAIXPrGl3iib68HXEN5wIKUEK/6VPUwuCf093C30PVA==", new DateTime(2023, 9, 11, 0, 26, 34, 938, DateTimeKind.Local).AddTicks(4056), "c9d215e9-e6fb-4fee-bc08-c5faca6223ef" });
+                values: new object[] { "17f81a32-31e5-4fc4-8973-006ca29f6a57", "AQAAAAEAACcQAAAAEGtnRt+wdOoQzuu+Q9KOA1S1lz7Duz0Mnd+DeA9IzFH22lMH+4+VWLkdXSBMvlUl0A==", new DateTime(2023, 9, 14, 2, 59, 16, 325, DateTimeKind.Local).AddTicks(7744), "8c9a82bf-7151-4462-a2be-4fb76b63c7a4" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "7a09fc16-8d35-48e4-bf98-532a876423f2",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "ceb3a1ba-49f5-4e41-81a2-6b8b235437de", "AQAAAAEAACcQAAAAEHChM2dfgyzbmeTVS3aAZKaSOysfpGIqnlYvhTQOXKyk+FU+qJiw5ljzz2qhkWWeEA==", new DateTime(2023, 9, 11, 0, 26, 34, 936, DateTimeKind.Local).AddTicks(2010), "bf56f957-96c5-46de-96fb-c8f4dba83ef3" });
+                values: new object[] { "964f998e-e87c-45e7-b5a6-ed673c25eb19", "AQAAAAEAACcQAAAAEOwy0XQkOcKS5li+llOQalBJf5bk5uz2yaR2L7qnHE3PtrnWyDHVcM+Q2EZnDzv5WQ==", new DateTime(2023, 9, 14, 2, 59, 16, 323, DateTimeKind.Local).AddTicks(5705), "3a5f2e51-cc14-4e91-a904-6a25b53ba50f" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "838db25f-ef7e-4cda-aa56-dfe1691d298d",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "de51538e-4d69-4f8f-b009-dff89c17948b", "AQAAAAEAACcQAAAAEMmB0K5B3jgAPxXp1ts6bg7/E0j70AwlzWmFI6jgCH9KiyKiHf/aXrjuUu1NNMoRMQ==", new DateTime(2023, 9, 11, 0, 26, 34, 959, DateTimeKind.Local).AddTicks(4517), "0ad21149-a594-4751-af85-d1fa498ef605" });
+                values: new object[] { "468db805-18ac-4f1c-88bd-fb04b51d76a4", "AQAAAAEAACcQAAAAECuWQegD953SyY73spqPme+twRUryelreVRIafeMC44oJSFwPYTKWCLa654mbENBAg==", new DateTime(2023, 9, 14, 2, 59, 16, 346, DateTimeKind.Local).AddTicks(7925), "82880a4e-3fc8-4e3d-9aa0-07c91b5ad93f" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "87582ce2-32f8-48ac-a429-cdb22d49bd45",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "af9e7b76-e02f-483e-9db2-7f27ee58fdf9", "AQAAAAEAACcQAAAAEOxBQLiblwj2LRDHKhDshYCoLbwTv7LkHPIyl/qhbeZ9mXPanKps5O/D0xlR7v/vLg==", new DateTime(2023, 9, 11, 0, 26, 34, 941, DateTimeKind.Local).AddTicks(7365), "0ce8f975-1e68-4f0c-bb48-9348eb8a4dd2" });
+                values: new object[] { "f0d8a2ca-0309-4f91-aa28-af03b1abd270", "AQAAAAEAACcQAAAAEAblKIUCEtF3Um+3xIuUfasFV7UbpUaGbb9QQxvwlf8FsfKEjoI/SJ4oqtfodopY2w==", new DateTime(2023, 9, 14, 2, 59, 16, 329, DateTimeKind.Local).AddTicks(765), "bcde38db-4c26-4f8d-b49b-f435c3602342" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "8a702a88-26b5-4e9d-bd3e-6b088b350db5",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "df483f76-990f-44f5-81b4-bcd4f5cbde35", "AQAAAAEAACcQAAAAEHlNH7DkVzw3jRDFH1d3YSQSroXMceAmssoIgW7KTYo7n+3ii2kcGc/FrnXfgSsiYg==", new DateTime(2023, 9, 11, 0, 26, 34, 957, DateTimeKind.Local).AddTicks(2613), "c034f6ab-8d36-4ffc-b220-236a170edf60" });
+                values: new object[] { "7a0cad16-7471-49c7-a705-5be0064fb4d7", "AQAAAAEAACcQAAAAELO6GfdtbRkJfC1tBkbjgant3RBTZ1nyohtpJPgBN0dy+PAtRU9iyQBZB3TEyLlJ8Q==", new DateTime(2023, 9, 14, 2, 59, 16, 344, DateTimeKind.Local).AddTicks(5799), "056671a7-831b-4f07-9695-7f19bd259f2f" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "8d307bd3-3290-43c2-b9b3-eb2daf715cb4",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "9922ae2a-0769-40ab-8a52-573925ee952d", "AQAAAAEAACcQAAAAEGSqbIlzWB0hnAqk/Pb1TsjUB0hr0tkA1+GF6O6yqsh4Hc4/Qt69z4T6CQGsGIedCQ==", new DateTime(2023, 9, 11, 0, 26, 34, 935, DateTimeKind.Local).AddTicks(1072), "1efb9464-e4d6-4d73-90c1-af05865941e6" });
+                values: new object[] { "f116955b-8df2-4f46-ae47-0c3d7519d962", "AQAAAAEAACcQAAAAECRe7wV4k+tV/0hVnDKS/F3xQSS6sSFnkgef5n81NJ5hn4XflN5lfG/iLgoJ9jKHbw==", new DateTime(2023, 9, 14, 2, 59, 16, 322, DateTimeKind.Local).AddTicks(4703), "36f3f96e-e51b-42ec-a66c-5c54fbded134" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "93a879f7-64a2-4a8c-b821-a1304bd7c8fb",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "f26907d1-62c2-4f42-ac00-15cc3d237e10", "AQAAAAEAACcQAAAAELISG98Qe3Hy5DXRHAKm6ippwopXQ1i7252Oln8oLnwjQzsgjPms/gDYM65wCR7JIQ==", new DateTime(2023, 9, 11, 0, 26, 34, 951, DateTimeKind.Local).AddTicks(6611), "fdb71d9a-86e4-4cde-9818-4470b10a0e8c" });
+                values: new object[] { "9ed64f2d-0827-44c3-afc4-bfd418478b9b", "AQAAAAEAACcQAAAAEIUSFkrNGFeVWdv8vEaDa28LhhdJhs3ItcR+wF/CYlxjaVl/BEjQGMpxaR48GzAc7w==", new DateTime(2023, 9, 14, 2, 59, 16, 339, DateTimeKind.Local).AddTicks(206), "7d84b47a-cf64-4e60-bdb4-9dd270ec9712" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "94280b80-6076-4025-9bf7-ae251fb7bcee",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "731fd22c-04c4-4c89-9711-8e62fb48109b", "AQAAAAEAACcQAAAAEK1Tau+RENmizThU3q+cSiY3v6hI0JrsuXq8+9M4l6l8a+XnaB+8eLUV4XFR48h7pQ==", new DateTime(2023, 9, 11, 0, 26, 34, 949, DateTimeKind.Local).AddTicks(4411), "a7dd6d10-cd2c-45c8-b978-757e1e95519d" });
+                values: new object[] { "893accdf-a60f-4238-97b7-8ea4694ab520", "AQAAAAEAACcQAAAAEKA8cFNzqXDXUegRMEtDw5QyauKlZQaukqVyDPpDwnlWGfzRwyA25D5S3gWOdLRjBA==", new DateTime(2023, 9, 14, 2, 59, 16, 336, DateTimeKind.Local).AddTicks(7963), "ea34f40d-5201-41a9-9b3c-5d9d5832dee4" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "978959e9-4ec5-49a0-a703-77884cc8d109",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "40222960-332b-430b-bc67-b8d79ec4c301", "AQAAAAEAACcQAAAAEAig5mg1lUeCJdTRYXg0IIKqaBWzJm+nAg5KkAQoLFm5gs/jgw6Bw9qkIWLZuzyRGQ==", new DateTime(2023, 9, 11, 0, 26, 34, 962, DateTimeKind.Local).AddTicks(8158), "b0d0d101-1faf-42bc-8fb3-afd85917510e" });
+                values: new object[] { "04c47070-46c6-4377-a6c4-d8904e53f10b", "AQAAAAEAACcQAAAAELCs8mcWTjcJ+q/pvwb+iz8F6ejRE+yoe8gla7fGjjz7xk3dTSP21kE1xJwVVWIFYA==", new DateTime(2023, 9, 14, 2, 59, 16, 350, DateTimeKind.Local).AddTicks(1081), "6aaa91c2-9a59-40af-8619-3730b9bfee66" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "9a9b36f7-4a83-48c8-91d3-9136426dbee9",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "fd87eafd-2463-475c-8c2d-4bcbc94dedc8", "AQAAAAEAACcQAAAAEJxRSDCWB4ualfYhnC2jX274wMklGpPehsXj6ey7hT1ySOLqaPKgmxZ6Jce+auxlEQ==", new DateTime(2023, 9, 11, 0, 26, 34, 931, DateTimeKind.Local).AddTicks(7827), "ad33b313-1826-4b16-8027-6c614c28ad8a" });
+                values: new object[] { "161ba4e8-645e-41fd-b3d7-19283db1445f", "AQAAAAEAACcQAAAAEAybsnkIkyvGh5syZLWu9ABcJpPpwubH0vyQcbooWm9mBl8Sw2WGK9alubFFePQSvQ==", new DateTime(2023, 9, 14, 2, 59, 16, 319, DateTimeKind.Local).AddTicks(1583), "2b66af5f-dd3d-4e3e-a4ce-f069c54287ab" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "a6424f60-c8e2-495d-bf48-bfb3e9457516",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "a692e9a8-e0d9-4f52-8080-9a600a145028", "AQAAAAEAACcQAAAAEN87uSW7k2rwib245oi7kXEw7BaTNHyu2sU2hM5Ujbzf1P+LL1L9PqyF8KN65qdTgw==", new DateTime(2023, 9, 11, 0, 26, 34, 946, DateTimeKind.Local).AddTicks(1487), "dd2f77f8-151c-4b97-be0e-d17ba8ad2639" });
+                values: new object[] { "31a4186c-c630-4a90-b368-dbd4541fcdae", "AQAAAAEAACcQAAAAEJaKhsrEnJfH94ORrRvQV7ZPl2vg0ciQ+m+I1jHkh9KOMwHWDNplERBaFY1M6YVtGg==", new DateTime(2023, 9, 14, 2, 59, 16, 333, DateTimeKind.Local).AddTicks(4947), "1eb68782-d7cb-4b81-9415-24b1f1a5fc11" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "a6dc0238-4999-49e9-93c1-dfd243e36781",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "bd9f499c-4021-43eb-9184-6c2d61723ba2", "AQAAAAEAACcQAAAAEH69/VNOzX4+J5wpvoGLv/Mjd+SqgkP94OZ3G51j2IJPQis4Vcwwmkf4dtCmuPdWdQ==", new DateTime(2023, 9, 11, 0, 26, 34, 958, DateTimeKind.Local).AddTicks(3516), "03571630-18de-4bac-86b2-ed3a95794492" });
+                values: new object[] { "0636dc5e-1ae3-4c56-b72d-404f45ea6bde", "AQAAAAEAACcQAAAAEOOfArdMIgfkJFu4+uoyYgDJF7IZOjDU8e63zmjUr9in7xVY3iFSL4UK9tDpD9Pagw==", new DateTime(2023, 9, 14, 2, 59, 16, 345, DateTimeKind.Local).AddTicks(6827), "2b79787b-37d2-41cd-a5de-2530ad350568" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "a9e4a9d6-96f3-40dd-8968-a30baa02ce9b",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "6d926154-3560-4d59-b1dd-bfab1a9cf670", "AQAAAAEAACcQAAAAEJRq9a+eoNCeQ2kUivh/pIWFGNlI57iF/QDSD1tGmrrdnQDCi3XWgfBlGoVp+81SUg==", new DateTime(2023, 9, 11, 0, 26, 34, 934, DateTimeKind.Local).AddTicks(55), "88ebc20f-deed-471d-9e67-ef12acd662bb" });
+                values: new object[] { "1fd1d508-ce87-4ed1-ad89-1829ba7fd42e", "AQAAAAEAACcQAAAAEEUiDHcMuhIjzh1pCCtmr9+9QU20BkMMke4Wa37PxHf+zxMm8j2PC/mTz5ENp12W/Q==", new DateTime(2023, 9, 14, 2, 59, 16, 321, DateTimeKind.Local).AddTicks(3587), "629fd4f8-4324-460d-8736-7fe383ea9b9e" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "acb6d047-97c5-4553-82cf-d6042362af1e",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "5e41a7e1-1c00-4ea3-8d4b-564e36e2d843", "AQAAAAEAACcQAAAAELFTs7NJdG8dQ0E0bIKIYkU0fBBRHJ0L4v93NsBoiD4+kpyNyIOLL/i88DGD8vutTg==", new DateTime(2023, 9, 11, 0, 26, 34, 945, DateTimeKind.Local).AddTicks(518), "2f4b97dd-654a-4b4e-b52c-3903239d4004" });
+                values: new object[] { "b8e5f674-5a1d-4980-831e-68cab8f0fa4c", "AQAAAAEAACcQAAAAEIbxq8oP02GHrpuO4BOAhrn5zoSPCdlTkc11cRYSNzObDcAjuNhTskOpXy3q/kIQ2w==", new DateTime(2023, 9, 14, 2, 59, 16, 332, DateTimeKind.Local).AddTicks(3923), "94393c93-0f05-4687-81b0-a3b930ac8db5" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "b2a83ec0-3fd0-4500-93b6-9fd1804db4fc",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "1e0354a1-2f55-4674-82ab-a03a7429f6ff", "AQAAAAEAACcQAAAAEJRG8jgDFC9ExF+q9y5iYKj0SLoGkQCv4TUaHLRHQu+Ul8ueenEEpL/tbKsLxWKjXg==", new DateTime(2023, 9, 11, 0, 26, 34, 947, DateTimeKind.Local).AddTicks(2449), "93d1d1d7-1855-464a-81b5-be8dd9ceb2ba" });
+                values: new object[] { "378b9064-528e-4161-a848-8e0968ff6f0b", "AQAAAAEAACcQAAAAEGVNudaN4AQdyQr7O5aZDHQeuw8XSGZntRC3hCIKdbXY+i0e20uOnThGe6hbsu7b7g==", new DateTime(2023, 9, 14, 2, 59, 16, 334, DateTimeKind.Local).AddTicks(5979), "9679d784-9a82-47e7-b5da-d6e2c98f8831" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "b87fc486-a805-4fad-89bd-c836281ce8a0",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "5cbc4589-6b74-4a54-84c9-550c89ff0640", "AQAAAAEAACcQAAAAEHNNzUNL5smS4H+npUE0JvDpB7BlImIW1HkBBKf+tEHqzLwB0Ga0pAnRrFFOA+SF6g==", new DateTime(2023, 9, 11, 0, 26, 34, 955, DateTimeKind.Local).AddTicks(238), "ebe5926e-5644-42b5-a066-1b4a44acb1b4" });
+                values: new object[] { "08c7a5b2-6be3-4a00-8966-0ef9ade50d2b", "AQAAAAEAACcQAAAAEP/UlNXOYKhK1COup5kHw179WYZxy6WUkrc8XU37STyfrjomzV6hB4x3qiWBzaKwgw==", new DateTime(2023, 9, 14, 2, 59, 16, 342, DateTimeKind.Local).AddTicks(3347), "27db81ee-33ff-4015-a671-5a08b0cbb258" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "d966a121-573e-49ed-bf9b-5f677d0a4aa8",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "f8120f7f-10f6-4328-b943-d991872fa80b", "AQAAAAEAACcQAAAAEK8wxVUnAgQONg6c9L3kRwEogF4OxC6ygdd088QFIpG9y5p9yhdpv7RUfsmWzPoJVg==", new DateTime(2023, 9, 11, 0, 26, 34, 952, DateTimeKind.Local).AddTicks(7698), "0d044634-e1b9-4c5f-b3d8-19ec8aa52827" });
+                values: new object[] { "d1029766-6b48-4c96-bfa8-d27c90165ae6", "AQAAAAEAACcQAAAAEMayp4EtunQtLNvejw+fjRQ7PkNqqFqUWDFFR38XhaZkcy8tWGby6ifsWO47k4q4zw==", new DateTime(2023, 9, 14, 2, 59, 16, 340, DateTimeKind.Local).AddTicks(1235), "e974fc00-7330-4ac1-b997-c5324c45f89a" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "f18ff312-2889-46df-a392-264b865a2c72",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "RegisteredOn", "SecurityStamp" },
-                values: new object[] { "dc06ea2a-669e-495d-9733-921577a3b26a", "AQAAAAEAACcQAAAAEPVgUi+QtGJqScsVFZRyVlnG2U36uJ+ZBxP5qy4Sxdg+0Z84egjvkpciWDaYMYkA8A==", new DateTime(2023, 9, 11, 0, 26, 34, 939, DateTimeKind.Local).AddTicks(5229), "f6e2bd7e-2452-409a-a73d-17b17d385cf8" });
+                values: new object[] { "a00e3aa7-9297-441b-86af-1ffa3983b227", "AQAAAAEAACcQAAAAECQSK84b9Lse+eeBfA9+eRDIb7iAjlf7yjjBmPiCu1lGdl8fD0uVKEgtj+AlpHLT2g==", new DateTime(2023, 9, 14, 2, 59, 16, 326, DateTimeKind.Local).AddTicks(8838), "bb060f5d-23c3-4c92-909f-7a6820d4fec3" });
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5878));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9774));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5914));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9815));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5957));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9818));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5960));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9821));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5963));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9851));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 6,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5966));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9855));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 7,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5969));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9858));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 8,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5972));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9860));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 9,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5975));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9863));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 10,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5979));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9867));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 11,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5981));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9870));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 12,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5984));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9873));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 13,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5987));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9875));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 14,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5990));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9878));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 15,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5992));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9881));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 16,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5995));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9883));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 17,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(5998));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9886));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 18,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6002));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9890));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 19,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6004));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9893));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 20,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6007));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9896));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 21,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6010));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9898));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 22,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6013));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9901));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 23,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6015));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9904));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 24,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6018));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9906));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 25,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6021));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9909));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 26,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6023));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9912));
 
             migrationBuilder.UpdateData(
                 table: "Books",
                 keyColumn: "Id",
                 keyValue: 27,
                 column: "CreatedOn",
-                value: new DateTime(2023, 9, 11, 0, 26, 34, 930, DateTimeKind.Local).AddTicks(6026));
+                value: new DateTime(2023, 9, 14, 2, 59, 16, 317, DateTimeKind.Local).AddTicks(9915));
 
             migrationBuilder.CreateIndex(
                 name: "IX_BooksOrders_OrderId",

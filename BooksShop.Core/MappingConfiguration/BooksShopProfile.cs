@@ -6,6 +6,7 @@
     using BooksShop.Core.ViewModels.ShoppingCart;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
+    using BooksShop.Infrastructure.Data.Enums;
 
     public class BooksShopProfile : Profile
     {
@@ -34,6 +35,16 @@
             this.CreateMap<Book, BookOrderViewModel>()
                 .ForMember(x => x.Quantity, src => src.Ignore())
                 .ForMember(x => x.TotalPrice, src => src.Ignore());
+            this.CreateMap<OrderModel, Order>()
+                .ForMember(x => x.OrderDate, mo => mo.MapFrom(src => DateTime.Now))
+                .ForMember(x => x.DeliveryAddress, mo => mo
+                .MapFrom(src => src.DeliveryAddress ?? string.Empty))
+                .ForMember(x => x.PaymentMethod, mo => mo
+                .MapFrom(src => src.PaymentMethod ?? PaymentMethod.CreditCard))
+                .ForMember(x => x.PaymentStatus, mo => mo
+                .MapFrom(src => PaymentStatus.Pending))
+                .ForMember(x => x.OrderStatus, mo => mo
+                .MapFrom(src => OrderStatus.Created));
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()

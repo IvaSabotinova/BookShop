@@ -61,18 +61,46 @@
 
         [HttpPost]
 
-        public async Task<IActionResult> Cart (OrderModel model)
+        public async Task<IActionResult> Cart(OrderModel model)
         {
-            if (this.ModelState.IsValid)
+            if (model.DeliveryAddress == null || model.PaymentMethod == null)
             {
+                this.TempData[Constants.Message] = OrderDataValidation;
                 return this.View(model);
             }
 
-            string? userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            try
+            {
+                string? userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            await this.shoppingCartService.CreateOrder(model, userId);
+                if (userId == null)
+                {
+                    return this.RedirectToAction("Login", "User");
+                }
 
-            return this.View();
+                string cookieValue = this.HttpContext.Request.Cookies[Shopping_Cart] ?? string.Empty;
+
+                if (string.IsNullOrEmpty(cookieValue))
+                {
+                    this.TempData[Constants.Message] = ShoppingCartEmpty;
+                    return this.View(model);
+                }
+
+                model.CookieValue = cookieValue;
+                await this.shoppingCartService.CreateOrder(model, userId);
+
+                // Delete the Cookie "shopping_cart" from browser
+                this.Response.Cookies.Delete(Shopping_Cart);
+
+                this.TempData[Constants.Message] = OrderCreated;
+                return this.RedirectToAction(nameof(this.Cart));
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.TempData[Constants.Message] = ex.Message;
+                return this.View(model);
+            }
         }
     }
 }

@@ -151,7 +151,7 @@
 
         public const string AboveThreeHundred = "Above 300";
 
-        public const string BookNotAvailable = "The book is currently not available";
+        public const string BookNotAvailable = "The book is currently not available!";
 
         public const string Shopping_Cart = "shopping_cart";
 
@@ -161,5 +161,9 @@
         public const string CreditCard = "Credit Card";
 
         public const string ShoppingCartEmpty = "Your cart is empty!";
+
+        public const string OrderCreated = "Order created successfully!";
+
+        public const string OrderDataValidation = "Please fill in all required details for the order!";
     }
 }

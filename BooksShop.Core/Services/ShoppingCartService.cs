@@ -12,13 +12,19 @@
     public class ShoppingCartService : IShoppingCartService
     {
         private readonly IRepository<Book> booksRepo;
+        private readonly IRepository<Order> ordersRepo;
+        private readonly IRepository<BookOrder> bookOrderRepo;
         private readonly IMapper mapper;
 
         public ShoppingCartService(
             IRepository<Book> booksRepo,
+            IRepository<Order> ordersRepo,
+            IRepository<BookOrder> bookOrderRepo,
             IMapper mapper)
         {
             this.booksRepo = booksRepo;
+            this.ordersRepo = ordersRepo;
+            this.bookOrderRepo = bookOrderRepo;
             this.mapper = mapper;
         }
 
@@ -114,9 +120,39 @@
             };
         }
 
-        public Task CreateOrder(OrderModel model, string userId)
+        public async Task CreateOrder(OrderModel model, string userId)
         {
-            throw new NotImplementedException();
+            Dictionary<int, int> bookDictionary = this.GetCookieInfo(model.CookieValue);
+
+            if (bookDictionary.Count > 0)
+            {
+                Order newOrder = this.mapper.Map<Order>(model);
+                newOrder.ApplicationUserId = userId;
+                await this.ordersRepo.AddAsync(newOrder);
+                await this.ordersRepo.SaveChangesAsync();
+
+                foreach (KeyValuePair<int, int> bookKVP in bookDictionary)
+                {
+                    Book book = await this.booksRepo.AllAsNoTracking()
+                        .Where(x => x.Id == bookKVP.Key)
+                        .FirstOrDefaultAsync();
+
+                    if (book == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+
+                    newOrder.BookOrders.Add(new BookOrder
+                    {
+                        BookId = bookKVP.Key,
+                        OrderId = newOrder.Id,
+                        Quantity = bookKVP.Value,
+                        UnitPrice = book.Price,
+                    });
+                }
+
+                await this.bookOrderRepo.SaveChangesAsync();
+            }
         }
     }
 }

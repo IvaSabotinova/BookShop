@@ -1,5 +1,9 @@
 ﻿namespace BooksShop.Infrastructure.Data
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Microsoft.EntityFrameworkCore.Metadata.Internal;
+    using static BooksShop.Infrastructure.Data.Constants;
+
     public class BookOrder
     {
         public int OrderId { get; set; }
@@ -12,6 +16,8 @@
 
         public int Quantity { get; set; }
 
-        public decimal TotalPrice => this.Quantity * this.Book.Price;
+        [Column(TypeName = DecimalType)]
+        public decimal UnitPrice { get; set; }
+
     }
 }

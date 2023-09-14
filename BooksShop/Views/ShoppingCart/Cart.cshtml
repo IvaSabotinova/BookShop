@@ -2,14 +2,21 @@
 
 <div class="row border rounded-3">
     <div class="col-md-8 p-3">
-        <h4>Shopping Cart</h4>
+        <h4>Shopping Cart</h4> 
 
-        @if (!Model.OrderedBooks.Any())
+        @if (this.TempData.ContainsKey(Message))
+        {
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>@this.TempData[Message]</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>       
+        }
+        else if(!Model.OrderedBooks.Any())
         {
             <div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <strong>@ShoppingCartEmpty</strong>
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>       
+            </div>
         }
 
         <table class="table align-middle">
