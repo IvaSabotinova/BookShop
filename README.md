@@ -20,14 +20,12 @@ The **administrator** can add new books, update or delete existing ones. He can 
 **Home Page**
 ![Home_Page](https://github.com/IvaSabotinova/BookShop/assets/96121572/e61bed2d-3c4b-4fc1-8514-27bb95a94ca4)
 
-![HomePage](https://github.com/IvaSabotinova/BookShop/assets/96121572/dd74f347-84a5-45fe-800f-68a22fb1b50c)
-
 **Books Advanced Search**
 ![BookAdvancedSearch](https://github.com/IvaSabotinova/BookShop/assets/96121572/467ab811-24be-4a31-9a31-5fe0a3cc3aec)
 
 **Logged-in User Shopping Cart**
 
-![Logged-inUserShoppingCart](https://github.com/IvaSabotinova/BookShop/assets/96121572/0312032a-c13b-43b9-9b5f-ae9f8b6f3349)
+![Logged-inUserShoppingCart](https://github.com/IvaSabotinova/BookShop/assets/96121572/033dcb8e-34ac-49cb-8bae-4004fe483cf4)
 
 **Pagination of Books Advanced Search**
 
