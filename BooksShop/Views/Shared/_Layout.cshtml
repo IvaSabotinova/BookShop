@@ -70,7 +70,7 @@
                         </li>
                     </ul>
                     @{
-                        string cookieValue = this.Context.Request.Cookies[Shopping_Cart];
+                        string cookieValue = this.Context.Request.Cookies[ShoppingCart];
                         int cartSize = 0;
                         if (!string.IsNullOrEmpty(cookieValue))
                         {

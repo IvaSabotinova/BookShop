@@ -8,6 +8,6 @@
         CashOnDelivery,
         [Display(Name = Constants.CreditCard)]
         CreditCard,
-        Paypal
+        Paypal,
     }
 }

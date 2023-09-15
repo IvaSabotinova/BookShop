@@ -18,6 +18,5 @@
 
         [Column(TypeName = DecimalType)]
         public decimal UnitPrice { get; set; }
-
     }
 }

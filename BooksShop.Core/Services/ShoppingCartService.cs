@@ -28,28 +28,6 @@
             this.mapper = mapper;
         }
 
-        private Dictionary<int, int> GetCookieInfo(string cookieValue)
-        {
-           Dictionary<int, int> bookDictionary = new Dictionary<int, int>();
-
-           if (!string.IsNullOrEmpty(cookieValue))
-           {
-                string[] bookIdsArray = cookieValue.Split("-");
-                for (int i = 0; i < bookIdsArray.Length; i++)
-                {
-                    int bookId = int.Parse(bookIdsArray[i]);
-                    if (!bookDictionary.ContainsKey(bookId))
-                    {
-                        bookDictionary.Add(bookId, 0);
-                    }
-
-                    bookDictionary[bookId]++;
-                }
-           }
-
-           return bookDictionary;
-        }
-
         public async Task<OrderModel> ShoppingCartInfo(
             string cookieValue,
             string? action,
@@ -135,12 +113,7 @@
                 {
                     Book book = await this.booksRepo.AllAsNoTracking()
                         .Where(x => x.Id == bookKVP.Key)
-                        .FirstOrDefaultAsync();
-
-                    if (book == null)
-                    {
-                        throw new NullReferenceException();
-                    }
+                        .FirstOrDefaultAsync() ?? throw new NullReferenceException();
 
                     newOrder.BookOrders.Add(new BookOrder
                     {
@@ -153,6 +126,28 @@
 
                 await this.bookOrderRepo.SaveChangesAsync();
             }
+        }
+
+        private Dictionary<int, int> GetCookieInfo(string cookieValue)
+        {
+            Dictionary<int, int> bookDictionary = new Dictionary<int, int>();
+
+            if (!string.IsNullOrEmpty(cookieValue))
+            {
+                string[] bookIdsArray = cookieValue.Split("-");
+                for (int i = 0; i < bookIdsArray.Length; i++)
+                {
+                    int bookId = int.Parse(bookIdsArray[i]);
+                    if (!bookDictionary.ContainsKey(bookId))
+                    {
+                        bookDictionary.Add(bookId, 0);
+                    }
+
+                    bookDictionary[bookId]++;
+                }
+            }
+
+            return bookDictionary;
         }
     }
 }

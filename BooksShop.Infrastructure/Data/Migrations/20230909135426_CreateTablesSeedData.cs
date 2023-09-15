@@ -59,7 +59,7 @@ namespace BooksShop.Data.Migrations
                 type: "nvarchar(120)",
                 maxLength: 120,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: string.Empty);
 
             migrationBuilder.AddColumn<string>(
                 name: "FirstName",
@@ -67,7 +67,7 @@ namespace BooksShop.Data.Migrations
                 type: "nvarchar(30)",
                 maxLength: 30,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: string.Empty);
 
             migrationBuilder.AddColumn<string>(
                 name: "LastName",
@@ -75,7 +75,7 @@ namespace BooksShop.Data.Migrations
                 type: "nvarchar(30)",
                 maxLength: 30,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: string.Empty);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "RegisteredOn",
@@ -130,7 +130,7 @@ namespace BooksShop.Data.Migrations
                 values: new object[,]
                 {
                     { "b1353077-7dcd-4f94-820b-f8af8feb9690", "b2e26a49-1cd2-47b3-ba2b-2211e7d851e6", "Client", "CLIENT" },
-                    { "ec3a92cc-8b64-4b83-bc6a-c20031faa327", "6610b899-c6bf-4036-9831-ad602745c824", "Administrator", "ADMINISTRATOR" }
+                    { "ec3a92cc-8b64-4b83-bc6a-c20031faa327", "6610b899-c6bf-4036-9831-ad602745c824", "Administrator", "ADMINISTRATOR" },
                 });
 
             migrationBuilder.InsertData(
@@ -181,7 +181,7 @@ namespace BooksShop.Data.Migrations
                     { 3, "Mathematics" },
                     { 4, "Medicine" },
                     { 5, "History" },
-                    { 6, "Other" }
+                    { 6, "Other" },
                 });
 
             migrationBuilder.InsertData(
@@ -627,7 +627,7 @@ namespace BooksShop.Data.Migrations
                 table: "Messages",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: string.Empty,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(20)",
                 oldMaxLength: 20,

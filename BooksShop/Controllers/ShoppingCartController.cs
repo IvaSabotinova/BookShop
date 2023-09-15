@@ -30,7 +30,7 @@
             string? deliveryAddress,
             PaymentMethod? paymentMethod)
         {
-            string cookieValue = this.HttpContext.Request.Cookies[Shopping_Cart] ?? string.Empty;
+            string cookieValue = this.HttpContext.Request.Cookies[ShoppingCart] ?? string.Empty;
 
             string? userName = this.User.Identity?.Name;
             if (userName != null)
@@ -46,7 +46,7 @@
             cookieOptions.Expires = DateTime.Now.AddDays(365);
             cookieOptions.Path = "/";
 
-            this.Response.Cookies.Append(Shopping_Cart, model.CookieValue, cookieOptions);
+            this.Response.Cookies.Append(ShoppingCart, model.CookieValue, cookieOptions);
 
             if (act != null && bookId != 0 && model.CookieValue != cookieValue)
             {
@@ -78,7 +78,7 @@
                     return this.RedirectToAction("Login", "User");
                 }
 
-                string cookieValue = this.HttpContext.Request.Cookies[Shopping_Cart] ?? string.Empty;
+                string cookieValue = this.HttpContext.Request.Cookies[ShoppingCart] ?? string.Empty;
 
                 if (string.IsNullOrEmpty(cookieValue))
                 {
@@ -90,7 +90,7 @@
                 await this.shoppingCartService.CreateOrder(model, userId);
 
                 // Delete the Cookie "shopping_cart" from browser
-                this.Response.Cookies.Delete(Shopping_Cart);
+                this.Response.Cookies.Delete(ShoppingCart);
 
                 this.TempData[Constants.Message] = OrderCreated;
                 return this.RedirectToAction(nameof(this.Cart));

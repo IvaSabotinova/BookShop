@@ -4,6 +4,6 @@
     {
         Pending,
         Accepted,
-        Cancelled
+        Cancelled,
     }
 }

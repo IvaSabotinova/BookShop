@@ -1,17 +1,17 @@
 # Books Shop
 
-Books shop project using ASP .Net Core MVC.
+Books shop project using ASP .Net Core MVC. Still working on this project - pending some additions in admin area.
 
 ## :bookmark_tabs: Short Description
 
 A **Books Shop** app with two main roles - **Administrator** and **Client**.
 
-The **administrator** can add new books, update or delete existing ones. He can also view all incoming messages from site users and clients and can view details of all registered clients. All his action are facilitated by adding pagination, searching and sorting functionalities.
+The **Administrator** can add new books, update or delete existing ones. He can also view all incoming messages from site users and clients and can view details of all registered users and clients. All his action are facilitated by pagination, searching and sorting functionalities.
 
 **Clients** can choose their favorite books and add them to their shopping cart, then make an order when they decide. Newest books and top sales are available on home page. Needed books can be easily found by advanced and combined search functionality - by author, title, price range, page range and book category.
 
 
-## Database Diagram
+## :cd: Database Diagram
 
 ![Database_Diagram](https://github.com/IvaSabotinova/BookShop/assets/96121572/9b59a8d2-40fb-4cab-9e43-bc421d8c5fd0)
 
@@ -25,11 +25,15 @@ The **administrator** can add new books, update or delete existing ones. He can 
 
 **Logged-in User Shopping Cart**
 
-![Logged-inUserShoppingCart](https://github.com/IvaSabotinova/BookShop/assets/96121572/033dcb8e-34ac-49cb-8bae-4004fe483cf4)
+![Logged-inUserShoppingCart](https://github.com/IvaSabotinova/BookShop/assets/96121572/5fe0d6b3-4a11-4a33-b103-84a3a0fa6f83)
 
 **Pagination of Books Advanced Search**
 
-![AdvancedSearchPagination](https://github.com/IvaSabotinova/BookShop/assets/96121572/69d3bd21-7d85-4be5-8413-877336cc322c)
+![AdvancedSearchPagination](https://github.com/IvaSabotinova/BookShop/assets/96121572/ac94de16-3d8d-4921-a713-8a6ed41b114c)
+
+**Book Details**
+
+![BookDetails](https://github.com/IvaSabotinova/BookShop/assets/96121572/b2affb67-cf1f-42a0-853e-8bf4b3f2a07b)
 
 **Logged-in User Profile**
 
@@ -47,8 +51,26 @@ The **administrator** can add new books, update or delete existing ones. He can 
 
 ![AdminArea_AllBooks](https://github.com/IvaSabotinova/BookShop/assets/96121572/1a179c51-045f-444d-bdd4-6c7f8c5013a9)
 
+**Admin Area - Edit Book**
+
+![EditBook](https://github.com/IvaSabotinova/BookShop/assets/96121572/22a27b53-37f3-442b-b2d7-eb68f7531f9d)
+
 **Admin Area - All Users**
 
 ![AdminArea_AllUsers](https://github.com/IvaSabotinova/BookShop/assets/96121572/f6162240-bc5c-44e6-a7d7-a8e36029a55c)
+
+## :hammer_and_pick: Built With
+
+- ASP.NET Core MVC
+- Entity Framework Core
+- Microsoft SQL Server
+- AutoMapper
+- JavaScript
+- Bootstrap 5, HTML, CSS and Font Awesome
+- StyleCop
+- Service and Repository Layers
+
+
+
 
 

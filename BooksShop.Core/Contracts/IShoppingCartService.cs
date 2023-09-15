@@ -12,6 +12,6 @@
             string? deliveryAddress,
             PaymentMethod? paymentMethod);
 
-        Task CreateOrder (OrderModel model, string userId);
+        Task CreateOrder(OrderModel model, string userId);
     }
 }

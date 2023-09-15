@@ -153,7 +153,7 @@
 
         public const string BookNotAvailable = "The book is currently not available!";
 
-        public const string Shopping_Cart = "shopping_cart";
+        public const string ShoppingCart = "shopping_cart";
 
         // payment methods
         public const string CashOnDelivery = "Cash on Delivery";
