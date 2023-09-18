@@ -1,0 +1,76 @@
+﻿@model OrdersListViewModel
+
+<h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">List of Orders</h3>
+
+@{
+    IDictionary<string, string> paymentMethod = new Dictionary<string, string>()
+    {
+        { "CashOnDelivery", CashOnDelivery },
+        { "CreditCard", CreditCard },
+        { "Paypal", "Paypal" },
+    };
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Items</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Payment Method</th>
+            <th>Payment Status</th>
+            <th>Order Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (OrdersInListViewModel order in Model.Orders)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.ItemsCount</td>
+                <td>@order.OrderDate.ToString("d")</td>
+                <td>@(order.BooksTotalSum)$</td>
+                <td>@paymentMethod[order.PaymentMethod.ToString()]</td>
+
+                @if (order.PaymentStatus.Equals(PaymentStatus.Accepted))
+                {
+                    <td><span class="badge bg-success">@order.PaymentStatus</span></td>
+                }
+                else if (order.PaymentStatus.Equals(PaymentStatus.Pending))
+                {
+                    <td><span class="badge bg-primary">@order.PaymentStatus</span></td>
+                }
+                else
+                {
+                    <td><span class="badge bg-warning text-dark">@order.PaymentStatus</span></td>
+                }
+
+                @if (order.OrderStatus.Equals(OrderStatus.Accepted)
+                || order.OrderStatus.Equals(OrderStatus.Shipped)
+                || order.OrderStatus.Equals(OrderStatus.Delivered))
+                {
+                    <td><span class="badge bg-success">@order.OrderStatus</span></td>
+                }
+                else if (order.OrderStatus.Equals(OrderStatus.Created))                
+                {
+                    <td><span class="badge bg-primary">@order.OrderStatus</span></td>
+                }
+                else
+                {
+                    <td><span class="badge bg-warning text-dark">@order.OrderStatus</span></td>
+                }
+
+
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-orderId="@order.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_PagingPartial" model="@Model"/>
+

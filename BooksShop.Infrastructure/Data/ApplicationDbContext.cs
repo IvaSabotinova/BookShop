@@ -30,8 +30,10 @@
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
             builder.Entity<BookOrder>()
                 .HasKey(x => new { x.BookId, x.OrderId });
+            builder.ApplyConfiguration(new BookOrderConfiguration());
             base.OnModelCreating(builder);
         }
     }

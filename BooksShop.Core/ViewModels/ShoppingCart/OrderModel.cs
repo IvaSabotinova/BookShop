@@ -4,7 +4,7 @@
 
     public class OrderModel
     {
-        public IEnumerable<BookOrderViewModel> OrderedBooks { get; set; } = Enumerable.Empty<BookOrderViewModel>();
+        public IEnumerable<BookInOrderViewModel> OrderedBooks { get; set; } = Enumerable.Empty<BookInOrderViewModel>();
 
         public string CookieValue { get; set; }
 

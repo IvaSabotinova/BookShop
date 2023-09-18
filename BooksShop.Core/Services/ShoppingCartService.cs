@@ -74,13 +74,13 @@
                 cookieValue = newCookieValue;
             }
 
-            List<BookOrderViewModel> shoppingCartBooks = new List<BookOrderViewModel>();
+            List<BookInOrderViewModel> shoppingCartBooks = new List<BookInOrderViewModel>();
             decimal subTotal = 0;
             foreach (KeyValuePair<int, int> book in bookDictionary)
             {
-                BookOrderViewModel model = await this.booksRepo.AllAsNoTracking()
+                BookInOrderViewModel model = await this.booksRepo.AllAsNoTracking()
                     .Where(x => x.Id == book.Key)
-                    .ProjectTo<BookOrderViewModel>(this.mapper.ConfigurationProvider)
+                    .ProjectTo<BookInOrderViewModel>(this.mapper.ConfigurationProvider)
                     .FirstAsync();
 
                 model.Quantity = book.Value;

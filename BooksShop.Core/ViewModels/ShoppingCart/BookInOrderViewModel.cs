@@ -1,6 +1,6 @@
 ﻿namespace BooksShop.Core.ViewModels.ShoppingCart
 {
-    public class BookOrderViewModel : BookBaseViewModel
+    public class BookInOrderViewModel : BookBaseViewModel
     {
         public int Quantity { get; set; }
 

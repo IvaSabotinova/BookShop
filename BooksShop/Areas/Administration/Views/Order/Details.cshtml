@@ -1,0 +1,177 @@
+﻿@model OrderDetailsViewModel
+
+<h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">Order Details</h3>
+@{
+    IDictionary<string, string> paymentMethodEnums = new Dictionary<string, string>()
+    {
+        { "CashOnDelivery", CashOnDelivery },
+        { "CreditCard", CreditCard },
+        { "Paypal", "Paypal" },
+    };
+}
+
+<div class="row mb-3 py-3">
+    <div class="col-lg-6">
+        <div class="border rounded p-3 h-100">
+            <h3>Order</h3>
+
+            <table class="table">
+                <tr>
+                    <td>Order ID</td>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Order Date</td>
+                    <td>@Model.OrderDate.ToString("d")</td>
+                </tr>
+                <tr>
+                    <td>Delivery Address</td>
+                    <td>@Model.DeliveryAddress</td>
+                </tr>
+                <tr>
+                    <td>Payment Method</td>
+                    <td>@paymentMethodEnums[Model.PaymentMethod.ToString()]</td>
+                </tr>
+                <tr>
+                    <td>Payment Status</td>
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                            @Model.PaymentStatus
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Order Status</td>
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#orderModal">
+                            @Model.OrderStatus
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="border rounded p-3 h-100">
+            <h3>Client</h3>
+
+            <table class="table">
+                <tr>
+                    <td>Client ID</td>
+                    <td>@Model.ApplicationUserId</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>@Model.ApplicationUserFullName</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@Model.ApplicationUserEmail</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>@Model.ApplicationUserPhoneNumber</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>@Model.ApplicationUserAddress</td>
+                </tr>
+                <tr>
+                    <td>Registered On</td>
+                    <td>@Model.ApplicationUserRegisteredOn.ToString("d")</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th style="width:100px">Units</th>
+            <th style="width:100px">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BookInOrderDetailsViewModel book in Model.BookOrders)
+        {
+            <tr>
+                <td>
+                    <h3>@book.BookTitle</h3>
+                    @book.BookAuthor<br>
+                    @(book.UnitPrice)$
+                </td>
+                <td>@book.Quantity</td>
+                <td>@(book.BookTotalPrice)$</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-end m-3">
+    <strong>Subtotal:</strong> @(Model.Subtotal)$<br />
+    <strong>Shipping Fee:</strong> @(Model.ShippingFee)$<br />
+    <strong>Total:</strong> @(Model.Subtotal + Model.ShippingFee)$ <br />
+</div>
+
+
+
+@*<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Payment Status</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <label>Payment Status</label>
+                    <select class="form-select mb-2" name="payment_status" asp-for="PaymentStatus">
+                        <option value="pending">pending</option>
+                        <option value="accepted">accepted</option>
+                        <option value="canceled">canceled</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Order Status</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <label>Order Status</label>
+                    <select class="form-select mb-2" name="order_status" asp-for="OrderStatus">
+                        <option value="created">created</option>
+                        <option value="accepted">accepted</option>
+                        <option value="canceled">canceled</option>
+                        <option value="shipped">shipped</option>
+                        <option value="delivered">delivered</option>
+                        <option value="returned">returned</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@

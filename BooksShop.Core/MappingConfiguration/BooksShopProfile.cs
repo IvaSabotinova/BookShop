@@ -3,6 +3,7 @@
     using AutoMapper;
     using BooksShop.Core.ViewModels.Books;
     using BooksShop.Core.ViewModels.Messages;
+    using BooksShop.Core.ViewModels.Orders;
     using BooksShop.Core.ViewModels.ShoppingCart;
     using BooksShop.Core.ViewModels.Users;
     using BooksShop.Infrastructure.Data;
@@ -32,7 +33,7 @@
 
             // Shopping Cart
             this.CreateMap<Book, BookDetailsViewModel>();
-            this.CreateMap<Book, BookOrderViewModel>()
+            this.CreateMap<Book, BookInOrderViewModel>()
                 .ForMember(x => x.Quantity, src => src.Ignore())
                 .ForMember(x => x.TotalPrice, src => src.Ignore());
             this.CreateMap<OrderModel, Order>()
@@ -45,6 +46,15 @@
                 .MapFrom(src => PaymentStatus.Pending))
                 .ForMember(x => x.OrderStatus, mo => mo
                 .MapFrom(src => OrderStatus.Created));
+
+            // Orders
+            this.CreateMap<BookOrder, BookOrderViewModel>();
+            this.CreateMap<Order, OrdersInListViewModel>();
+            this.CreateMap<BookOrder, BookInOrderDetailsViewModel>();
+            this.CreateMap<Order, OrderDetailsViewModel>()
+                .ForMember(x => x.ApplicationUserFullName, mo => mo
+                .MapFrom(src => src.ApplicationUser.FirstName + " " +
+                              src.ApplicationUser.LastName));
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()

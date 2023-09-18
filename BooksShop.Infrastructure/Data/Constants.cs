@@ -156,7 +156,7 @@
         public const string ShoppingCart = "shopping_cart";
 
         // payment methods
-        public const string CashOnDelivery = "Cash on Delivery";
+        public const string CashOnDelivery = "Cash On Delivery";
 
         public const string CreditCard = "Credit Card";
 

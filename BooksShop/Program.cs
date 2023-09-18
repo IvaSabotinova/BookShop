@@ -40,6 +40,7 @@ namespace BooksShop
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
