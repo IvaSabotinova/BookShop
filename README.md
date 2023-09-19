@@ -80,7 +80,7 @@ The **Administrator** can add new books, update or delete existing ones. He can 
 
 **Admin Area - Order Details - Update Order Status**
 
-![AdminArea_OrderDetails_UpdateOrderStatus](https://github.com/IvaSabotinova/BookShop/assets/96121572/e284ca61-667e-4811-8efe-86e670e0655b)
+![AdminArea_OrderDetails_UpdateOrderStatus](https://github.com/IvaSabotinova/BookShop/assets/96121572/4e144e6d-dfca-404a-a044-b66c2610466b)
 
 
 
