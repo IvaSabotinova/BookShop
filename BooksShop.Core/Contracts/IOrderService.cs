@@ -2,6 +2,7 @@
 {
     using BooksShop.Core.ViewModels.Orders;
     using BooksShop.Infrastructure.Data;
+    using BooksShop.Infrastructure.Data.Enums;
 
     public interface IOrderService
     {
@@ -11,6 +12,9 @@
 
         Task<Order> GetOrderById(int id);
 
-        Task<OrderDetailsViewModel> GetDetailsById(int orderId);
+        Task<OrderDetailsViewModel> GetOrderDetails(
+            Order order,
+            PaymentStatus? paymentStatus,
+            OrderStatus? orderStatus);
     }
 }

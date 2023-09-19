@@ -6,6 +6,7 @@
     using BooksShop.Core.ViewModels.Orders;
     using BooksShop.Infrastructure.Common;
     using BooksShop.Infrastructure.Data;
+    using BooksShop.Infrastructure.Data.Enums;
     using Microsoft.EntityFrameworkCore;
 
     public class OrderService : IOrderService
@@ -43,13 +44,32 @@
         }
 
         public async Task<Order> GetOrderById(int id)
-        => await this.orderRepo.AllAsNoTracking()
+        => await this.orderRepo.All()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task<OrderDetailsViewModel> GetDetailsById(int orderId)
-        => await this.orderRepo.AllAsNoTracking()
-                .Where(x => x.Id == orderId)
-                .ProjectTo<OrderDetailsViewModel>(this.mapper.ConfigurationProvider)
-                .FirstAsync();
+        public async Task<OrderDetailsViewModel> GetOrderDetails(
+            Order order,
+            PaymentStatus? paymentStatus,
+            OrderStatus? orderStatus)
+        {
+            if (paymentStatus != null)
+            {
+                order.PaymentStatus = (PaymentStatus)paymentStatus;
+                await this.orderRepo.SaveChangesAsync();
+            }
+
+            if (orderStatus != null)
+            {
+                order.OrderStatus = (OrderStatus)orderStatus;
+                await this.orderRepo.SaveChangesAsync();
+            }
+
+            OrderDetailsViewModel model = await this.orderRepo.AllAsNoTracking()
+              .Where(x => x.Id == order.Id)
+              .ProjectTo<OrderDetailsViewModel>(this.mapper.ConfigurationProvider)
+              .FirstAsync();
+
+            return model;
+        }
     }
 }

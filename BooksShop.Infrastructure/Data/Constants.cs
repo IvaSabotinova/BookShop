@@ -165,5 +165,7 @@
         public const string OrderCreated = "Order created successfully!";
 
         public const string OrderDataValidation = "Please fill in all required details for the order!";
+
+        public const string OrderNotFound = "Order was not found!";
     }
 }

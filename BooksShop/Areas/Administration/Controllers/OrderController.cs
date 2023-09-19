@@ -3,6 +3,7 @@
     using BooksShop.Core.Contracts;
     using BooksShop.Core.ViewModels.Orders;
     using BooksShop.Infrastructure.Data;
+    using BooksShop.Infrastructure.Data.Enums;
     using Microsoft.AspNetCore.Mvc;
 
     public class OrderController : AdministrationController
@@ -27,7 +28,10 @@
 
         [HttpGet]
 
-        public async Task<IActionResult> Details(int orderId)
+        public async Task<IActionResult> Details(
+            int orderId,
+            PaymentStatus? paymentStatus,
+            OrderStatus? orderStatus)
         {
             Order order = await this.orderService.GetOrderById(orderId);
 
@@ -36,8 +40,17 @@
                 return this.NotFound();
             }
 
-            OrderDetailsViewModel model = await this.orderService.GetDetailsById(orderId);
-            return this.View(model);
+            try
+            {
+                OrderDetailsViewModel model = await this.orderService.GetOrderDetails(order, paymentStatus, orderStatus);
+                return this.View(model);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.TempData[Constants.Message] = ex.Message;
+                return this.RedirectToAction(nameof(this.Details), new { orderId });
+            }
         }
     }
 }

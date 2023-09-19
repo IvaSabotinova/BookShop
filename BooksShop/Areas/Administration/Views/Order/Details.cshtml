@@ -1,5 +1,14 @@
 ﻿@model OrderDetailsViewModel
 
+
+@if (this.TempData.ContainsKey(Message))
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@this.TempData[Message]</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+
 <h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">Order Details</h3>
 @{
     IDictionary<string, string> paymentMethodEnums = new Dictionary<string, string>()
@@ -118,7 +127,7 @@
 
 
 
-@*<!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -128,12 +137,9 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="orderId" value="@Model.Id" />
                     <label>Payment Status</label>
-                    <select class="form-select mb-2" name="payment_status" asp-for="PaymentStatus">
-                        <option value="pending">pending</option>
-                        <option value="accepted">accepted</option>
-                        <option value="canceled">canceled</option>
+                    <select class="form-select mb-2" name="paymentStatus" asp-for="PaymentStatus" asp-items="@Html.GetEnumSelectList<PaymentStatus>()">
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -156,15 +162,9 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="orderId" value="@Model.Id" />
                     <label>Order Status</label>
-                    <select class="form-select mb-2" name="order_status" asp-for="OrderStatus">
-                        <option value="created">created</option>
-                        <option value="accepted">accepted</option>
-                        <option value="canceled">canceled</option>
-                        <option value="shipped">shipped</option>
-                        <option value="delivered">delivered</option>
-                        <option value="returned">returned</option>
+                    <select class="form-select mb-2" name="orderStatus" asp-for="OrderStatus" asp-items="@Html.GetEnumSelectList<OrderStatus>()">
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -174,4 +174,4 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
