@@ -1,6 +1,6 @@
 # Books Shop
 
-**Books shop** project using ASP .Net Core MVC. Still working on this project - pending some additions in admin area.
+**Books shop** project using ASP .Net Core MVC. Pending minor final additions.
 
 ## :hammer_and_pick: Built With
 
@@ -29,9 +29,15 @@ The **Administrator** can add new books, update or delete existing ones. He can 
 ## :camera_flash: Screenshots
 
 **Home Page**
-![Home_Page](https://github.com/IvaSabotinova/BookShop/assets/96121572/e61bed2d-3c4b-4fc1-8514-27bb95a94ca4)
+
+![HomePage](https://github.com/IvaSabotinova/BookShop/assets/96121572/56b37860-3d65-4fbd-803d-88f93fb54c4b)
+
+**Home Page - Top Sales**
+
+![HomePage_TopSalesSection](https://github.com/IvaSabotinova/BookShop/assets/96121572/c5a20dbe-d46c-4a61-a525-6b54707f34b2)
 
 **Books Advanced Search**
+
 ![BookAdvancedSearch](https://github.com/IvaSabotinova/BookShop/assets/96121572/467ab811-24be-4a31-9a31-5fe0a3cc3aec)
 
 **Logged-in User Shopping Cart**
