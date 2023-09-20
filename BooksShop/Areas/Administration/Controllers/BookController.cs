@@ -22,11 +22,11 @@
         [HttpGet]
 
         public async Task<IActionResult> All(
-              int page = 1,
-              int itemsPerPage = 3,
-              string? search = null,
-              string? column = null,
-              string? order = null)
+         int page = 1,
+         int itemsPerPage = 3,
+         string? search = null,
+         string? column = null,
+         string? order = null)
         {
             if (page <= 0)
             {

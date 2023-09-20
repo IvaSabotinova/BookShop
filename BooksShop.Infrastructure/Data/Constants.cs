@@ -167,5 +167,9 @@
         public const string OrderDataValidation = "Please fill in all required details for the order!";
 
         public const string OrderNotFound = "Order was not found!";
+
+        public const string GeneralErrorMessage = "Something went wrong! Please try again!";
+
+        public const string OrderNotBelongToUser = "The order does not belong to current user!";
     }
 }

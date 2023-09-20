@@ -16,6 +16,8 @@
             string? column = null,
             string? order = null);
 
+
+
         Task<IEnumerable<SelectListItem>> GetAllCategories();
 
         Task CreateBookAsync(BookInputModel model, string webRootPath);
@@ -28,7 +30,7 @@
 
         Task DeleteBookAsync(int id, string webRootPath);
 
-        Task<IEnumerable<BookViewModel>> GetFourNewestBooks();
+        Task<BookIndexViewModel> GetFourNewestBooks();
 
         Task<BookDetailsViewModel> GetDetailsById(int id);
 

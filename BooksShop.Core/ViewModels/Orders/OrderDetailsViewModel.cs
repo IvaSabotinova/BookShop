@@ -19,6 +19,6 @@
         public IEnumerable<BookInOrderDetailsViewModel> BookOrders { get; set; } =
             Enumerable.Empty<BookInOrderDetailsViewModel>();
 
-        public decimal Subtotal => this.BookOrders.Select(x => x.BookTotalPrice).Sum();
+        public decimal Subtotal => BookOrders.Select(x => x.BookTotalPrice).Sum();
     }
 }

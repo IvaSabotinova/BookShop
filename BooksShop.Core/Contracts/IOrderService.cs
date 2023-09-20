@@ -16,5 +16,9 @@
             Order order,
             PaymentStatus? paymentStatus,
             OrderStatus? orderStatus);
+
+        Task<IEnumerable<OrdersInListViewModel>> GetUserOrders(string userId);
+
+        Task<UserOrderDetailsViewModel> GetUserOrderDetails(int orderId, string userId);
     }
 }

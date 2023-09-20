@@ -1,5 +1,6 @@
 ﻿namespace BooksShop.Core.Services
 {
+    using System.Collections.Generic;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using BooksShop.Core.Contracts;
@@ -8,6 +9,7 @@
     using BooksShop.Infrastructure.Data;
     using BooksShop.Infrastructure.Data.Enums;
     using Microsoft.EntityFrameworkCore;
+    using static BooksShop.Infrastructure.Data.Constants;
 
     public class OrderService : IOrderService
     {
@@ -64,12 +66,37 @@
                 await this.orderRepo.SaveChangesAsync();
             }
 
-            OrderDetailsViewModel model = await this.orderRepo.AllAsNoTracking()
+            return await this.orderRepo.AllAsNoTracking()
               .Where(x => x.Id == order.Id)
               .ProjectTo<OrderDetailsViewModel>(this.mapper.ConfigurationProvider)
               .FirstAsync();
+        }
 
-            return model;
+        public async Task<IEnumerable<OrdersInListViewModel>> GetUserOrders(string userId)
+        => await this.orderRepo.AllAsNoTracking()
+                .Where(x => x.ApplicationUserId == userId)
+                .OrderByDescending(x => x.OrderDate)
+                .ProjectTo<OrdersInListViewModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+
+        public async Task<UserOrderDetailsViewModel> GetUserOrderDetails(int orderId, string userId)
+        {
+            Order order = await this.GetOrderById(orderId);
+
+            if (order == null)
+            {
+                throw new NullReferenceException(OrderNotFound);
+            }
+
+            if (order.ApplicationUserId != userId)
+            {
+                throw new InvalidOperationException(OrderNotBelongToUser);
+            }
+
+            return await this.orderRepo.AllAsNoTracking()
+                .Where(x => x.Id == orderId)
+                .ProjectTo<UserOrderDetailsViewModel>(this.mapper.ConfigurationProvider)
+                .FirstAsync();
         }
     }
 }

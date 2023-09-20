@@ -1,0 +1,74 @@
+﻿@model UserOrderDetailsViewModel
+
+<h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">Order Details</h3>
+
+@{
+    IDictionary<string, string> paymentMethodEnums = new Dictionary<string, string>()
+    {
+        { "CashOnDelivery", CashOnDelivery },
+        { "CreditCard", CreditCard },
+        { "Paypal", "Paypal" },
+    };
+}
+
+
+<div class="border rounded p-3 mb-3">
+    <h3>Order</h3>
+
+    <table class="table">
+        <tr>
+            <td>Order ID</td>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <td>Order Date</td>
+            <td>@Model.OrderDate.ToString("d")</td>
+        </tr>
+        <tr>
+            <td>Delivery Address</td>
+            <td>@Model.DeliveryAddress</td>
+        </tr>
+        <tr>
+            <td>Payment Method</td>
+            <td>@paymentMethodEnums[Model.PaymentMethod.ToString()]</td>
+        </tr>
+        <tr>
+            <td>Payment Status</td>
+            <td>@Model.PaymentStatus</td>
+        </tr>
+        <tr>
+            <td>Order Status</td>
+            <td>@Model.OrderStatus</td>
+        </tr>
+    </table>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th style="width:100px">Units</th>
+            <th style="width:100px">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BookInOrderDetailsViewModel book in Model.BookOrders)
+        {
+            <tr>
+                <td>
+                    <h3>@book.BookTitle</h3>
+                    @book.BookAuthor<br>
+                    @(book.UnitPrice)$
+                </td>
+                <td>@book.Quantity</td>
+                <td>@(book.BookTotalPrice)$</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-end m-3">
+    <strong>Subtotal:</strong> @(Model.Subtotal)$<br />
+    <strong>Shipping Fee:</strong> @(Model.ShippingFee)$<br />
+    <strong>Total:</strong> @(Model.Subtotal + Model.ShippingFee)$ <br />
+</div>

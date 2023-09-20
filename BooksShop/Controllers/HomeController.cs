@@ -22,7 +22,7 @@
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<BookViewModel> model = await this.bookService.GetFourNewestBooks();
+            BookIndexViewModel model = await this.bookService.GetFourNewestBooks();
             return this.View(model);
         }
 

@@ -5,6 +5,7 @@
     using BooksShop.Infrastructure.Data;
     using BooksShop.Infrastructure.Data.Enums;
     using Microsoft.AspNetCore.Mvc;
+    using static BooksShop.Infrastructure.Data.Constants;
 
     public class OrderController : AdministrationController
     {
@@ -48,8 +49,8 @@
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                this.TempData[Constants.Message] = ex.Message;
-                return this.RedirectToAction(nameof(this.Details), new { orderId });
+                this.TempData[Constants.Message] = GeneralErrorMessage;
+                return this.RedirectToAction(nameof(this.All));
             }
         }
     }

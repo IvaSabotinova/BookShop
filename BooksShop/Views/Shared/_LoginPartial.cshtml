@@ -34,7 +34,8 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Client
                 </a>
-                <ul class="dropdown-menu">                 
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Order" asp-action="All">Orders</a></li>
                        <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile" asp-route-id="@(this.UserManager.GetUserId(this.User))">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>                
                     <li class="dropdown-item">

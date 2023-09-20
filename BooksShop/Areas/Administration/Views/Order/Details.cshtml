@@ -1,14 +1,6 @@
 ﻿@model OrderDetailsViewModel
 
 
-@if (this.TempData.ContainsKey(Message))
-{
-    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-        <strong>@this.TempData[Message]</strong>
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    </div>
-}
-
 <h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">Order Details</h3>
 @{
     IDictionary<string, string> paymentMethodEnums = new Dictionary<string, string>()

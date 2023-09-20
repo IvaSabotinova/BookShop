@@ -15,6 +15,5 @@
         public OrderStatus OrderStatus { get; set; }
 
         public decimal ShippingFee => 5;
-
     }
 }

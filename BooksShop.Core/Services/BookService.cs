@@ -113,15 +113,13 @@
         }
 
         public async Task<IEnumerable<SelectListItem>> GetAllCategories()
-        {
-            return await this.categoryRepo.AllAsNoTracking()
+        => await this.categoryRepo.AllAsNoTracking()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.Name,
                 })
                 .ToListAsync();
-        }
 
         public async Task CreateBookAsync(BookInputModel model, string webRootPath)
         {
@@ -150,12 +148,10 @@
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<BookEditModel> GetBookForEdit(int id)
-        {
-            return await this.booksRepo.All()
+        => await this.booksRepo.All()
                 .Where(x => x.Id == id)
                 .ProjectTo<BookEditModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
-        }
 
         public async Task EditBookAsync(BookEditModel model, string webRootPath)
         {
@@ -206,12 +202,20 @@
             }
         }
 
-        public async Task<IEnumerable<BookViewModel>> GetFourNewestBooks()
-        => await this.booksRepo.AllAsNoTracking()
+        public async Task<BookIndexViewModel> GetFourNewestBooks()
+        {
+            List<BookViewModel> books = await this.booksRepo.AllAsNoTracking()
                 .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
                 .Take(4)
                 .ToListAsync();
+
+            return new BookIndexViewModel()
+            {
+                Books = books,
+                Search = string.Empty,
+            };
+        }
 
         public async Task<BookDetailsViewModel> GetDetailsById(int id)
         => await this.booksRepo.AllAsNoTracking()

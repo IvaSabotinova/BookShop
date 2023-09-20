@@ -1,4 +1,4 @@
-﻿@model OrdersListViewModel
+﻿@model IEnumerable<OrdersInListViewModel>
 
 <h3 class="rounded p-2 my-2 text-white text-center" style="background-color: #08618d;">List of Orders</h3>
 
@@ -9,6 +9,7 @@
         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
     </div>
 }
+
 
 @{
     IDictionary<string, string> paymentMethod = new Dictionary<string, string>()
@@ -34,7 +35,7 @@
     </thead>
 
     <tbody>
-        @foreach (OrdersInListViewModel order in Model.Orders)
+        @foreach (var order in Model)
         {
             <tr>
                 <td>@order.Id</td>
@@ -57,12 +58,12 @@
                 }
 
                 @if (order.OrderStatus.Equals(OrderStatus.Accepted)
-                || order.OrderStatus.Equals(OrderStatus.Shipped)
-                || order.OrderStatus.Equals(OrderStatus.Delivered))
+                    || order.OrderStatus.Equals(OrderStatus.Shipped)
+                    || order.OrderStatus.Equals(OrderStatus.Delivered))
                 {
                     <td><span class="badge bg-success">@order.OrderStatus</span></td>
                 }
-                else if (order.OrderStatus.Equals(OrderStatus.Created))                
+                else if (order.OrderStatus.Equals(OrderStatus.Created))
                 {
                     <td><span class="badge bg-primary">@order.OrderStatus</span></td>
                 }
@@ -71,7 +72,6 @@
                     <td><span class="badge bg-warning text-dark">@order.OrderStatus</span></td>
                 }
 
-
                 <td>
                     <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-orderId="@order.Id">Details</a>
                 </td>
@@ -79,6 +79,3 @@
         }
     </tbody>
 </table>
-
-<partial name="_PagingPartial" model="@Model"/>
-

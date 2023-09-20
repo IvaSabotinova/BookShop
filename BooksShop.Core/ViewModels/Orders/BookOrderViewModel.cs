@@ -8,6 +8,6 @@
 
         public decimal UnitPrice { get; set; }
 
-        public decimal BookTotalPrice => this.Quantity * this.UnitPrice;
+        public decimal BookTotalPrice => Quantity * UnitPrice;
     }
 }

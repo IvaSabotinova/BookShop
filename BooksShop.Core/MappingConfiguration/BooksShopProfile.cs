@@ -55,6 +55,7 @@
                 .ForMember(x => x.ApplicationUserFullName, mo => mo
                 .MapFrom(src => src.ApplicationUser.FirstName + " " +
                               src.ApplicationUser.LastName));
+            this.CreateMap<Order, UserOrderDetailsViewModel>();
 
             // Users
             this.CreateMap<ApplicationUser, UserEditModel>()

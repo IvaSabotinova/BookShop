@@ -1,10 +1,17 @@
-﻿@model IEnumerable<BookViewModel>
+﻿@model BookIndexViewModel
 
 @{
     ViewData["Title"] = "Home Page";
     ViewData["NoContainer"] = true;
 }
 
+@if (this.TempData.ContainsKey(Message))
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@this.TempData[Message]</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
 <style>
     .book-item img {
         width: 100%;
@@ -22,6 +29,7 @@
         }
 </style>
 
+
 <!--Hero section-->
 <div class="py-5" style="background-color: #08618d;">
     <div class="container text-white">
@@ -35,11 +43,10 @@
                     You will definitely find what makes you happy.
                 </p>
                 <br />
-                <form class="d-flex" action="/Books">
-                    <input class="form-control me-2" name="search" placeholder="Search by Title or Author">
+                <form class="d-flex" action="/Book/All">
+                    <input class="form-control me-2" name="search" required placeholder="Search by Title or Author">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
-
             </div>
             <div class="col-md-6">
                 <img src="/images/74f5b0ec-5ea0-4fdf-80d0-604a9249b71d.png" class="img-fluid rounded" alt="">
@@ -53,7 +60,7 @@
     <div class="container">
         <h1 class="pb-5 text-center display-5"><strong>Newest Books</strong></h1>
         <div class="row">
-            @foreach (BookViewModel book in Model)
+            @foreach (BookViewModel book in Model.Books)
             {
                 <div class="col-lg-3 col-sm-6 my-2">
                     <div class="card shadow text-center h-100 book-item">
@@ -80,7 +87,7 @@
     <div class="container">
         <h1 class="pb-5 text-center display-5"><strong>Top Sales</strong></h1>
         <div class="row">
-            @foreach (BookViewModel book in Model)
+            @foreach (BookViewModel book in Model.Books)
             {
                 <div class="col-lg-3 col-sm-6 my-2">
                     <div class="card shadow text-center h-100 book-item">

@@ -17,6 +17,29 @@
 
         [HttpGet]
 
+        public async Task<IActionResult> All(
+          string search,
+          int page = 1,
+          int itemsPerPage = 3,
+          string? column = null,
+          string? order = null)
+        {
+            if (page <= 0)
+            {
+                return this.NotFound();
+            }
+
+            if (string.IsNullOrEmpty(search))
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            BooksListViewModel model = await this.bookService.GetAll(page, itemsPerPage, search, column, order);
+            return this.View(model);
+        }
+
+        [HttpGet]
+
         public async Task<IActionResult> Details(int id)
         {
            Book book = await this.bookService.GetBookById(id);
