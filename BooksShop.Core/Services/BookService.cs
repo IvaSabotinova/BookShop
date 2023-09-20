@@ -202,18 +202,26 @@
             }
         }
 
-        public async Task<BookIndexViewModel> GetFourNewestBooks()
+        public async Task<BookIndexViewModel> GetFourNewestAndTopSalesBooks()
         {
-            List<BookViewModel> books = await this.booksRepo.AllAsNoTracking()
+            List<BookViewModel> newestBooks = await this.booksRepo.AllAsNoTracking()
                 .OrderByDescending(x => x.CreatedOn)
+                .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
+                .Take(4)
+                .ToListAsync();
+
+            List<BookViewModel> topSalesBooks = await this.booksRepo.AllAsNoTracking()
+                .OrderByDescending(x => x.BooksOrders.Select(x => x.Quantity).Sum())
+                .ThenByDescending(x => x.CreatedOn)
                 .ProjectTo<BookViewModel>(this.mapper.ConfigurationProvider)
                 .Take(4)
                 .ToListAsync();
 
             return new BookIndexViewModel()
             {
-                Books = books,
+                NewestBooks = newestBooks,
                 Search = string.Empty,
+                TopSalesBooks = topSalesBooks,
             };
         }
 

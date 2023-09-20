@@ -2,7 +2,9 @@
 {
     public class BookIndexViewModel
     {
-        public IEnumerable<BookViewModel> Books { get; set; }
+        public IEnumerable<BookViewModel> NewestBooks { get; set; }
+
+        public IEnumerable<BookViewModel> TopSalesBooks { get; set; }
 
         public string Search { get; set; }
     }

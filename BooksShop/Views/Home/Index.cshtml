@@ -60,7 +60,7 @@
     <div class="container">
         <h1 class="pb-5 text-center display-5"><strong>Newest Books</strong></h1>
         <div class="row">
-            @foreach (BookViewModel book in Model.Books)
+            @foreach (BookViewModel book in Model.NewestBooks)
             {
                 <div class="col-lg-3 col-sm-6 my-2">
                     <div class="card shadow text-center h-100 book-item">
@@ -87,7 +87,7 @@
     <div class="container">
         <h1 class="pb-5 text-center display-5"><strong>Top Sales</strong></h1>
         <div class="row">
-            @foreach (BookViewModel book in Model.Books)
+            @foreach (BookViewModel book in Model.TopSalesBooks)
             {
                 <div class="col-lg-3 col-sm-6 my-2">
                     <div class="card shadow text-center h-100 book-item">

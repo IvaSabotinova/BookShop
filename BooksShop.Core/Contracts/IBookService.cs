@@ -30,7 +30,7 @@
 
         Task DeleteBookAsync(int id, string webRootPath);
 
-        Task<BookIndexViewModel> GetFourNewestBooks();
+        Task<BookIndexViewModel> GetFourNewestAndTopSalesBooks();
 
         Task<BookDetailsViewModel> GetDetailsById(int id);
 
