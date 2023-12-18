@@ -1,6 +1,6 @@
 # Books Shop
 
-**Books shop** project using ASP .Net Core MVC. Pending minor final additions.
+**Books shop** project using ASP .Net Core MVC.
 
 ## :hammer_and_pick: Built With
 
